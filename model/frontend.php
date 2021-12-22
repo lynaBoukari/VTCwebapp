@@ -1,5 +1,5 @@
 <?php
-require_once('ProjetTDW/controller/frontend.php');
+require_once('../controller/frontend.php');
 class front_model {
     private $dbname ="tdwvtc";
     private $host="localhost";
@@ -131,7 +131,7 @@ private function ajouterTrajet($depart, $arrivee)
             return $rTransporter;
         }
          
-
+        
 
 
 

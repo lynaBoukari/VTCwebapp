@@ -1,7 +1,6 @@
 <?php
-require_once('ProjetTDW/view/frontend.php');
-require_once('ProjetTDW/model/frontend.php');
-
+require_once('../model/frontend.php');
+require_once('../view/frontend.php');
 
 class Front_controller{
 
