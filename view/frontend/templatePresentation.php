@@ -14,7 +14,8 @@
     </head>
         
     <body>
-       <!--Navigation BAR-->
+
+<!--Navigation BAR-->
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top"> 
     <div class="container-fluid">
  <a class="navbar-brand" href="#"> <img src="../../public/images/vtcLogo.png" alt="Logo" style="width:100% ; height: 30px;"></a>
@@ -47,9 +48,8 @@
     </div>
 </nav>
 
-  <?= $content ?>
-  <!--- The footer --->
-  <footer>
+<!--- The footer --->
+<footer>
       <div class="container-fluid padding">
           <div class="row text-center">
               <div class="col-md-4">
@@ -81,6 +81,12 @@
                   <a href="#">Statistiques</a> <br />
                   <a href="#">Contact</a> <br />
                   </div>
+                  <div class="col-12">
+                      <hr class="light">
+                      <h5>&copy; TDW projet ESI </h5>
+                      <p>BOUKARI Lyna 2cssil1 </p>
+                  </div>
+
           </div>
           </div>
   </footer>

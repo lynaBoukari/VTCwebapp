@@ -1,5 +1,5 @@
 <?php
-require_once('../controller/frontend.php');
+require_once('ProjetTDW/controller/frontend.php');
 class front_model {
     private $dbname ="tdwvtc";
     private $host="localhost";
@@ -98,6 +98,39 @@ private function ajouterTrajet($depart, $arrivee)
             $this-> deconnect($c);
        }
 
+         private function getTarifAnnonce($idAnnonce) {
+            $c->$this->connect($this->dbname, $this->host, $this->user, $this->password) ;
+
+            /*Recuperer id du trajet de cette annonce*/
+            $idTrajet=$c->prepare("select annonce.idTrajet from annonce where idAnnonce=?");
+            $idTrajet->bindParam(1, $idAnnonce);
+            $idTrajet =  $idTrajet->execute();
+            /* Recuperer la tarif du transport de cette annonce*/
+            $tarifTransport=$c->prepare("select transport.tarif from transport where idTrajet=?");
+            $tarifTransport->bindParam(1, $idTrajet);
+            $tarifTransport =  $tarifTransport->execute();
+
+            $this-> deconnect($c);
+            return $tarifTransport;
+        }
+
+        private function getTransporterAnnonce($idAnnonce){
+            $c->$this->connect($this->dbname, $this->host, $this->user, $this->password) ;
+
+            /* Recuperer id du trajet de cette annonce*/
+            $idTrajet=$c->prepare("select annonce.idTrajet from annonce where idAnnonce=?");
+            $idTrajet->bindParam(1, $idAnnonce);
+            $idTrajet =  $idTrajet->execute();
+
+            /* Recuperer les transporteur de ce trajet */
+            $rTransporter=$c->prepare("select * from transporter where idTrajet=?");
+            $rTransporter->bindParam(1, $idTrajet);
+            $rTransporter =  $rTransporter->execute();
+
+            $this-> deconnect($c);
+            return $rTransporter;
+        }
+         
 
 
 
