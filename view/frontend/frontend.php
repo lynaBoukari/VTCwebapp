@@ -38,18 +38,18 @@ public function  entetePage($titre) {
              <li class="nav-item">
                  <a class="nav-link" href="./index.php?titre=Presentation">Présentation</a>
              </li> <li class="nav-item">
-                 <a class="nav-link" href="#">News</a>
+                 <a class="nav-link" href="./index.php?titre=News">News</a>
              </li> <li class="nav-item">
-                 <a class="nav-link" href="#">Statistiques</a>
+                 <a class="nav-link" href="./index.php?titre=Statistiques">Statistiques</a>
              </li>
              <li class="nav-item">
-                 <a class="nav-link" href="#">Contact</a>
+                 <a class="nav-link" href="./index.php?titre=Contact">Contact</a>
              </li>
              <li class="nav-item">
-             <a type="button" class=" btn btn-primary nav-link" href="#">Se connecter</a>
+             <a type="button" class=" btn btn-primary nav-link" href="./index.php?titre=Seconnecter">Se connecter</a>
              </li>
              <li class="nav-item">
-                 <a type="button" class=" btn btn-primary nav-link" href="#">S'inscrire</a>
+                 <a type="button" class=" btn btn-primary nav-link" href="./index.php?titre=Sinscrire">S'inscrire</a>
              </li>
             </ul>
          </div>
@@ -71,7 +71,7 @@ public function  entetePage($titre) {
     <div class="carousel-inner">
         <div class="carousel-item active">
             <a href="https://www.caat.dz/index.php/produits-et-services/entreprises/assurances-transports/assurances-terrestres/transport-privé.html">
-           <img src="./public/images/diapo1.jpg" alt="Transport">
+           <img  class="img-fluid" src="./public/images/diapo1.jpg" alt="Transport">
            </a>
         </div>
         <div class="carousel-item">
@@ -453,14 +453,14 @@ $this-> affichFooter();
     }
 
 
-public function affichPresentation($titre){
-$this->entetePage($titre);
+public function affichPresentation(){
+$this->entetePage("Presentation");
 $this-> affichMenu();
 ?>
 <body>
      <div class="container-fluid">
         <div class="row">
-                <img  id="imagePresentation" style="width: 100%; height: 20rem;" src="./public/images/diapo1.jpg" alt="VTC Company">
+                <img  id="imagePresentation"  class="img-fluid"  src="./public/images/diapo1.jpg" alt="VTC Company">
         </div>
         <div class="row padding">
                 <div class="col-md-6 padding">   
@@ -470,7 +470,7 @@ $this-> affichMenu();
                        <br/> VTC Transports est différent d’un service de taxi classique. Nous ne venons vous chercher que sur rendez-vous et suivons d’autres règlements qui nous sont propres. En revanche, la location de nos voitures se fait toujours avec chauffeur.   </p>
              </div>
              <div class="col-md-6 padding">   
-             <img  id="imagePresentation" style="width: 100%; height: 100%; padding: 3rem;" src="./public/images/diapo2.jpg" alt="VTC Company">
+             <img  id="imagePresentation"  class="img-fluid"  src="./public/images/diapo2.jpg" alt="VTC Company">
                  </div>
         </div>
         <div class="row padding">
@@ -491,5 +491,59 @@ $this-> affichMenu();
     <?php
 
 $this-> affichFooter();
+}
+
+public function affichInscription() {
+    $this->entetePage("Inscription");
+?>
+<body>
+<?php
+$this-> affichMenu();
+    ?>
+    <form action="" method="post">
+    <div class="container inscription">
+      <h1>Inscription</h1>
+      <p>Veuillez remplir ce formulaire pour crerer votre compte.</p>
+      <hr>
+  
+      <label for="fname"><b>Prénom</b></label>
+      <input type="text" placeholder="Entrez prénom" name="fname" id="fname" required>
+  
+      <label for="lname"><b>Nom</b></label>
+      <input type="text" placeholder="Entrez nom" name="lname" id="lname" required>
+  
+      <label for="email"><b>Email</b></label>
+      <input type="email" placeholder="Entrez email" name="email" id="email" required>
+  
+      <label for="phone"><b>Téléphone</b></label>
+      <input type="text" placeholder="Entrez numéro de téléphone" name="phone" id="phone" required>
+  
+      <label for="adress"><b>Adresse</b></label>
+      <input type="text" placeholder="Entrez adresse" name="adress" id="adress" required>
+  
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" id="psw" required><br/>
+  
+      <h6>Voulez vous devenir un transporteur chez nous ?</h6>
+      <input type="radio" name="1" id="1" value="1" required>
+      <label for="1"><b>Oui</b></label>
+      <input type="radio" name="0" id="0" value="0">
+      <label for="0"><b>Non</b></label>
+  
+      <hr>
+      <button type="submit" class="registerbtn">S'inscrire</button>
+    </div>
+    
+    <div class="container signin">
+      <p>Vous avez déja un compte ? <a href="./index.php?titre=Seconnecter">Connectez-vous.</a>.</p>
+    </div>
+  </form>
+
+
+ </body>
+</html>
+
+  <?php
+    $this-> affichFooter();
 }
 }

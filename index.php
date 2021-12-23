@@ -12,9 +12,14 @@ $c->afficher_page_principal("Accueil") ;
 }else{
     if($_GET["titre"]=="Presentation") {
 $c->afficher_page_presentation("Presentation");
+    }else{
+        if($_GET["titre"]=="Sinscrire") {
+            $c->afficher_page_inscription();
+        }
     }
 }
 }else {
     $c->afficher_page_principal("Accueil") ;
 
 }
+

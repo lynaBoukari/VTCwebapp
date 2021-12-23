@@ -52,8 +52,6 @@ public function chercherTrajet($depart, $arrivee){
      /* Recuperer l id du trajet correspondant aux destination du filtre */
      $rtrajet=null ;
      $qtrajet=null ;
-  /*  $qtrajet=$c->prepare("select idTrajet from trajet where depart = '".$depart."' AND arrivee ='".$arrivee."'");
-           $rtrajet =  $qtrajet->execute();*/
            $qtrajet="select idTrajet from trajet where depart = '".$depart."' AND arrivee ='".$arrivee."'";
            $rtrajet = $this-> requete($c,$qtrajet);
            $this-> deconnect($c);
@@ -65,12 +63,11 @@ public function ajouterTrajet($depart, $arrivee)
      $idTrajet= $this->chercherTrajet($depart, $arrivee);
     if($idTrajet==null)
     {
-        $qtrajet=$c->prepare("insert into trajet(depart,arrivee) values ('?','?')");
-        $qtrajet->bindParam(1, $depart);
-        $qtrajet->bindParam(2, $arrivee);
-        $qtrajet->execute();
+        $qtrajet="insert into trajet(depart,arrivee) values ('".$depart."','".$arrivee."')";
+            /*$qtrajet->bindParam(1, $depart);
+        $qtrajet->bindParam(2, $arrivee);*/
+        $this-> requete($c,$qtrajet);
         $idTrajet= $this->chercherTrajet($depart, $arrivee);
-        
     }
     $this-> deconnect($c);
     return $idTrajet;
@@ -133,7 +130,12 @@ public function ajouterTrajet($depart, $arrivee)
             return $rTransporter;
         }
          
-        
+        public function inscription($fname, $lname, $email, $password, $phone, $adress, $isTransporter){
+            $c=$this->connect($this->dbname, $this->host, $this->user, $this->password) ;
+            $quser="insert into user(fname,lname,email,password,phone,adress,isTransporter) values ('".$fname."','".$lname."','".$email."','".$password."','".$phone."','".$adress."','".$isTransporter."' )";
+            $this-> requete($c,$quser);
+            $this-> deconnect($c);
+        }
 
 
 

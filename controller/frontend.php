@@ -21,4 +21,13 @@ public function afficher_page_presentation($titre)
     $v = new front_view();
     $v->affichPresentation($titre);
 }
+public function inscription($fname, $lname, $email, $password, $phone, $adress, $isTransporter){
+    $m=new front_model();
+    $ruser= $m->inscription($fname, $lname, $email, $password, $phone, $adress, $isTransporter);
+    return $ruser ;
+}
+public function afficher_page_inscription(){
+    $v = new front_view();
+  $v-> affichInscription();
+}
 }
