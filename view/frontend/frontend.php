@@ -1,5 +1,5 @@
 <?php
-
+require_once('./controller/frontend.php');
 class front_view {
 public function  entetePage($titre) {
 ?>
@@ -10,8 +10,9 @@ public function  entetePage($titre) {
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        <link href="../../public/css/style.css" rel="stylesheet" /> 
-        <script src="../../public/js/jquery-3.6.0.js"></script>    
+        <script src="./public/js/jquery-3.6.0.js"></script>    
+        <link href="./public/css/style.css" rel="stylesheet" /> 
+        
 
         <!--- le titre de la page est specifié dynamiquement--->
         <title><?= $titre ?></title>
@@ -19,23 +20,23 @@ public function  entetePage($titre) {
 <?php
 }
 
-  private function affichMenu(){
+  public function affichMenu(){
 
     ?>
     <!--Navigation BAR-->
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top"> 
     <div class="container-fluid">
- <a class="navbar-brand" href="#"> <img src="../../public/images/vtcLogo.png" alt="Logo" style="width:100% ; height: 30px;"></a>
+ <a class="navbar-brand" href="#"> <img src="./public/images/vtcLogo.png" alt="Logo" style="width:100% ; height: 30px;"></a>
  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarResponsive" >
      <span class="navbar-toggler-icon"></span>
      </button>
      <div class="collapse navbar-collapse" id="navbarResponsive">
          <ul class="navbar-nav ml-auto">
              <li class="nav-item active ">
-                 <a class="nav-link" href="#">Acceuil</a>
+                 <a class="nav-link" href="./index.php?titre=Accueil">Accueil</a>
              </li>
              <li class="nav-item">
-                 <a class="nav-link" href="#">Présentation</a>
+                 <a class="nav-link" href="./index.php?titre=Presentation">Présentation</a>
              </li> <li class="nav-item">
                  <a class="nav-link" href="#">News</a>
              </li> <li class="nav-item">
@@ -57,7 +58,7 @@ public function  entetePage($titre) {
 
 <?php 
   }
-    private function affichDiaporama(){
+    public function affichDiaporama(){
         ?>
 
         <!------ diaporama-----> 
@@ -70,17 +71,17 @@ public function  entetePage($titre) {
     <div class="carousel-inner">
         <div class="carousel-item active">
             <a href="https://www.caat.dz/index.php/produits-et-services/entreprises/assurances-transports/assurances-terrestres/transport-privé.html">
-           <img src="../../public/images/diapo1.jpg" alt="Transport">
+           <img src="./public/images/diapo1.jpg" alt="Transport">
            </a>
         </div>
         <div class="carousel-item">
             <a href="https://www.tranfal.com">
-           <img src="../../public/images/diapo2.jpg" alt="Transport">
+           <img src="./public/images/diapo2.jpg" alt="Transport">
            </a>
         </div>
         <div class="carousel-item">
             <a href="https://www.dhlexpress.fr/actualites/covid-19-dhl-express-continue-d-assurer-ses-operations">
-           <img src="../../public/images/diapo3.jpg" alt="Transport">
+           <img src="./public/images/diapo3.jpg" alt="Transport">
            </a>
         </div>
     </div>
@@ -89,14 +90,14 @@ public function  entetePage($titre) {
     <?php
     }
 
-    private function affichFooter(){
+    public function affichFooter(){
         ?>
          <!--- The footer --->
   <footer>
       <div class="container-fluid padding">
           <div class="row text-center">
               <div class="col-md-4">
-                  <img src="../../public/images/vtcLogo.png" alt="Logo" style="width:30% ; " >
+                  <img src="./public/images/vtcLogo.png" alt="Logo" style="width:30% ; " >
                   <hr class="light">
                   <p>+213-666-666-666</p>
                   <p>email@VTC.com</p>
@@ -118,8 +119,8 @@ public function  entetePage($titre) {
                   <hr class="light">
                   <h5>Menu</h5>
                   <hr class="light">
-                  <a  href="#">Acceuil</a> <br />
-                  <a  href="#">Présentation</a> <br />
+                  <a  href="./index.php?titre=Accueil">Acceuil</a> <br />
+                  <a  href="./index.php?titre=Presentation">Présentation</a> <br />
                   <a href="#">News</a> <br />
                   <a href="#">Statistiques</a> <br />
                   <a href="#">Contact</a> <br />
@@ -137,7 +138,7 @@ public function  entetePage($titre) {
   <?php
     }
 
-    private function affichFormRecherche(){
+    public function affichFormRecherche(){
         ?>
         <!--- formulaire de recherche--->
 
@@ -145,10 +146,10 @@ public function  entetePage($titre) {
     <div class="row">
       <h6> Veuillez spécifer les informations de recherche d'annonces :</h6>
     </div>
-<form class="form-inline">
+<form class="form-inline" method="post" action="">
 
   <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Départ :</label>
-  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="selectWilaya1">
   
     <option value="1">1-	Adrar</option>
     <option value="2">2-	Chlef</option>
@@ -201,7 +202,7 @@ public function  entetePage($titre) {
 
   </select>
   <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Arrivée :</label>
-  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="selectWilaya2">
   
     <option value="1">1-	Adrar</option>
     <option value="2">2-	Chlef</option>
@@ -253,13 +254,13 @@ public function  entetePage($titre) {
     <option value="48">48-	Relizane</option>
   </select>
 
-  <button type="submit" class="btn btn-primary my-1">Recherche</button>
+  <button type="submit" class="btn btn-primary my-1" name="submit">Recherche</button>
 </form>
 </div>
 <?php
     }
 
-    private function affichCadre(){
+    public function affichCadre(){
         ?>
 
         <!------ Cadres d'affichages------>
@@ -271,7 +272,7 @@ public function  entetePage($titre) {
     <div class="row padding">
         <div class="col-md-3">
             <div class="card">
-                    <img class="card-img-top" src="../../public/images/colis.png" alt="Annonce image"></img>
+                    <img class="card-img-top" src="./public/images/colis.png" alt="Annonce image"></img>
                     <div class="card-body">
                        <h4 class="card-title"> Titre annonce </h4>
                        <p class="card-text"> annonce de recherche d'une livraison pour un colis fragile...</p>
@@ -281,7 +282,7 @@ public function  entetePage($titre) {
         </div>
         <div class="col-md-3">
             <div class="card">
-                    <img class="card-img-top" src="../../public/images/colis.png" alt="Annonce image"></img>
+                    <img class="card-img-top" src="./public/images/colis.png" alt="Annonce image"></img>
                     <div class="card-body">
                        <h4 class="card-title"> Titre annonce </h4>
                        <p class="card-text"> annonce de recherche d'une livraison pour un colis fragile...</p>
@@ -291,7 +292,7 @@ public function  entetePage($titre) {
         </div>
         <div class="col-md-3">
             <div class="card">
-                    <img class="card-img-top" src="../../public/images/colis.png" alt="Annonce image"></img>
+                    <img class="card-img-top" src="./public/images/colis.png" alt="Annonce image"></img>
                     <div class="card-body">
                        <h4 class="card-title"> Titre annonce </h4>
                        <p class="card-text"> annonce de recherche d'une livraison pour un colis fragile...</p>
@@ -301,7 +302,7 @@ public function  entetePage($titre) {
         </div>
         <div class="col-md-3">
             <div class="card">
-                    <img class="card-img-top" src="../../public/images/colis.png" alt="Annonce image"></img>
+                    <img class="card-img-top" src="./public/images/colis.png" alt="Annonce image"></img>
                     <div class="card-body">
                        <h4 class="card-title"> Titre annonce </h4>
                        <p class="card-text"> annonce de recherche d'une livraison pour un colis fragile...</p>
@@ -317,7 +318,7 @@ public function  entetePage($titre) {
     <div class="row padding">
         <div class="col-md-3">
             <div class="card">
-                    <img class="card-img-top" src="../../public/images/colis.png" alt="Annonce image"></img>
+                    <img class="card-img-top" src="./public/images/colis.png" alt="Annonce image"></img>
                     <div class="card-body">
                        <h4 class="card-title"> Titre annonce </h4>
                        <p class="card-text"> annonce de recherche d'une livraison pour un colis fragile...</p>
@@ -327,7 +328,7 @@ public function  entetePage($titre) {
         </div>
         <div class="col-md-3">
             <div class="card">
-                    <img class="card-img-top" src="../../public/images/colis.png" alt="Annonce image"></img>
+                    <img class="card-img-top" src="./public/images/colis.png" alt="Annonce image"></img>
                     <div class="card-body">
                        <h4 class="card-title"> Titre annonce </h4>
                        <p class="card-text"> annonce de recherche d'une livraison pour un colis fragile...</p>
@@ -337,7 +338,7 @@ public function  entetePage($titre) {
         </div>
         <div class="col-md-3">
             <div class="card">
-                    <img class="card-img-top" src="../../public/images/colis.png" alt="Annonce image"></img>
+                    <img class="card-img-top" src="./public/images/colis.png" alt="Annonce image"></img>
                     <div class="card-body">
                        <h4 class="card-title"> Titre annonce </h4>
                        <p class="card-text"> annonce de recherche d'une livraison pour un colis fragile...</p>
@@ -347,7 +348,7 @@ public function  entetePage($titre) {
         </div>
         <div class="col-md-3">
             <div class="card">
-                    <img class="card-img-top" src="../../public/images/colis.png" alt="Annonce image"></img>
+                    <img class="card-img-top" src="./public/images/colis.png" alt="Annonce image"></img>
                     <div class="card-body">
                        <h4 class="card-title"> Titre annonce </h4>
                        <p class="card-text"> annonce de recherche d'une livraison pour un colis fragile...</p>
@@ -362,17 +363,18 @@ public function  entetePage($titre) {
 <?php
     }
 
-    private function affichBoutonPresent(){
+    public function affichBoutonPresent(){
         ?>
         <!---- Bouton comment cela fonctionne ---->
 <div class="container-fluid padding">
    <div class="row text-center justify-content-center">
-   <a href="#" class="btn btn-primary">Comment cela fonctionne ?</a>
+   <a href="./index.php?titre=Presentation" class="btn btn-primary">Comment cela fonctionne ?</a>
    </div>
 </div>
 <?php
     }
- private function affichPrincipal(($titre){
+
+ public function affichPrincipal($titre){
 $this->entetePage($titre);
 ?>
 <body>
@@ -380,12 +382,114 @@ $this->entetePage($titre);
 $this-> affichMenu();
 $this-> affichDiaporama();
 $this-> affichFormRecherche();
-$this-> affichCadre();
+if(!isset($_POST['submit'])) {
+$this-> affichCadre();}
+else{
+$this->affichResultatsRecherche();
+}
 $this-> affichBoutonPresent();
 $this-> affichFooter();
 ?>
  </body>
 </html>
+
+<?php
  }
 
+ public function affichAnnonce($depart, $arrivee) {
+     $c=new front_controller();
+     $rfa=null;
+    $rfa= $c->afficher_annonces($depart, $arrivee);
+    /* condition si le trajet n'existe pas dans la BDD*/
+    if ($rfa==null){
+        echo '  <div class="row padding">
+        <h5> Aucune annonce correspond aux criteres entrées ...</h5>
+        </div>';}
+        /* condition si le trajet existe mais pas d'annonces correspendantes*/
+        else{
+    if ($rfa->num_rows ==0){
+        echo '  <div class="row padding">
+        <h5> Aucune annonce correspond aux criteres entrées ...</h5>
+        </div>';
+    }
+    /*  dans le cas où le trajet existe et il ya des annonces*/
+    else{
+        echo '  <div class="row padding">';
+        $i=0;
+        $j=1;
+     foreach ($rfa as $rowfa ){
+            $description= substr($rowfa['description'],0,20);
+            echo '<div class="col-md-3">
+            <div class="card">
+                    <img class="card-img-top" src="./public/images/'.$rowfa["image"].'" alt="Annonce image"></img>
+                    <div class="card-body">
+                       <h4 class="card-title"> '.$rowfa['titre'].' </h4>
+                       <p class="card-text"> '. $description.' ...</p>
+                       <a href="#" class="btn btn-outline-secondary">Voir la suite</a>
+                    </div>
+            </div>
+             </div>'; 
+           
+             if($i==4 and $j<2){
+                 echo '</div>';
+                 $i=0;
+                 $j=$j+1;
+                 echo '  <div class="row padding">';
+             }       elseif ($i==4 and $j==2){
+                echo '</div>';
+                 break;
+             }   
+             $i=$i+1; 
+          
+         }
+    }
+}
+ }
+    public function affichResultatsRecherche(){
+/*  $this->affichFormRecherche();*/
+         if(isset($_POST['submit'])){
+            $this->affichAnnonce($_POST['selectWilaya1'], $_POST['selectWilaya2']);
+        }
+    }
+
+
+public function affichPresentation($titre){
+$this->entetePage($titre);
+$this-> affichMenu();
+?>
+<body>
+     <div class="container-fluid">
+        <div class="row">
+                <img  id="imagePresentation" style="width: 100%; height: 20rem;" src="./public/images/diapo1.jpg" alt="VTC Company">
+        </div>
+        <div class="row padding">
+                <div class="col-md-6 padding">   
+            <h3>Qui somme nous ?</h3>
+            <p>VTC Transports est un service destiné à vous accompagner dans vos déplacements en région parisienne.    <br/>  Nous mettons à votre disposition une équipe de chauffeurs expérimentés, des véhicules adaptés à vos besoins et avons une formule simple : « Vous êtes le client, nous vous emmenons d’un point A au point B, au meilleur tarif. »
+
+                       <br/> VTC Transports est différent d’un service de taxi classique. Nous ne venons vous chercher que sur rendez-vous et suivons d’autres règlements qui nous sont propres. En revanche, la location de nos voitures se fait toujours avec chauffeur.   </p>
+             </div>
+             <div class="col-md-6 padding">   
+             <img  id="imagePresentation" style="width: 100%; height: 100%; padding: 3rem;" src="./public/images/diapo2.jpg" alt="VTC Company">
+                 </div>
+        </div>
+        <div class="row padding">
+        <h3>Voici une vidéo présentant nos objectifs : </h3>
+        <div class="col-md-8">   
+          
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/gp51XI3DdKU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="col-md-4"> 
+                <p> Que faire si mon vol est retardé ?   <br/>   <br/>
+                            N’ayez aucune inquiétude ! Nos chauffeurs sont tous équipés d’une application qui les informe en temps réel de l’état du trafic aérien. Ils seront là au bon moment pour vous accueillir en toute sérénité.
+
+                            <br/>   <br/>Dois-je donner un pourboire au chauffeur ?   <br/>   <br/>
+                            Vous n’êtes pas obligé de donner un pourboire au chauffeur. Il est laissé à votre entière appréciation.</p>  
+             </div>
+        </div>
+     </div>
+    <?php
+
+$this-> affichFooter();
+}
 }
