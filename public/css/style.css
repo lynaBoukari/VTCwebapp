@@ -110,3 +110,12 @@ input[type=email]:focus {
     height: 5rem;
     font-size: 1.3rem;
 }
+
+#inscriptionTrans {
+    display: none;
+    margin-top: 2rem;
+}
+
+#transDivInscr {
+    display: none;
+}

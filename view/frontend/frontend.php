@@ -11,6 +11,7 @@ public function  entetePage($titre) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src="./public/js/jquery-3.6.0.js"></script>    
+        <script src="./public/js/script.js"></script>   
         <link href="./public/css/style.css" rel="stylesheet" /> 
         
 
@@ -465,9 +466,9 @@ $this-> affichMenu();
         <div class="row padding">
                 <div class="col-md-6 padding">   
             <h3>Qui somme nous ?</h3>
-            <p>VTC Transports est un service destiné à vous accompagner dans vos déplacements en région parisienne.    <br/>  Nous mettons à votre disposition une équipe de chauffeurs expérimentés, des véhicules adaptés à vos besoins et avons une formule simple : « Vous êtes le client, nous vous emmenons d’un point A au point B, au meilleur tarif. »
+            <p>VTC Transports est un service destiné à vous accompagner dans vos déplacements en région parisienne.    <br/>  Nous mettons à votre disposition une équipe de chauffeurs expérimentés, des véhicules adaptés à vos besoins et avons une formule simple : « Vous êtes le client, nous vous emmenons d'un point A au point B, au meilleur tarif. »
 
-                       <br/> VTC Transports est différent d’un service de taxi classique. Nous ne venons vous chercher que sur rendez-vous et suivons d’autres règlements qui nous sont propres. En revanche, la location de nos voitures se fait toujours avec chauffeur.   </p>
+                       <br/> VTC Transports est différent d'un service de taxi classique. Nous ne venons vous chercher que sur rendez-vous et suivons d'autres règlements qui nous sont propres. En revanche, la location de nos voitures se fait toujours avec chauffeur.   </p>
              </div>
              <div class="col-md-6 padding">   
              <img  id="imagePresentation"  class="img-fluid"  src="./public/images/diapo2.jpg" alt="VTC Company">
@@ -481,10 +482,10 @@ $this-> affichMenu();
             </div>
             <div class="col-md-4"> 
                 <p> Que faire si mon vol est retardé ?   <br/>   <br/>
-                            N’ayez aucune inquiétude ! Nos chauffeurs sont tous équipés d’une application qui les informe en temps réel de l’état du trafic aérien. Ils seront là au bon moment pour vous accueillir en toute sérénité.
+                            N'ayez aucune inquiétude ! Nos chauffeurs sont tous équipés d'une application qui les informe en temps réel de l'état du trafic aérien. Ils seront là au bon moment pour vous accueillir en toute sérénité.
 
                             <br/>   <br/>Dois-je donner un pourboire au chauffeur ?   <br/>   <br/>
-                            Vous n’êtes pas obligé de donner un pourboire au chauffeur. Il est laissé à votre entière appréciation.</p>  
+                            Vous n'êtes pas obligé de donner un pourboire au chauffeur. Il est laissé à votre entière appréciation.</p>  
              </div>
         </div>
      </div>
@@ -516,8 +517,8 @@ $this-> affichMenu();
       <input type="email" placeholder="Entrez email" name="email" id="email" required>
   
       <label for="phone"><b>Téléphone</b></label>
-      <input type="text" placeholder="Entrez numéro de téléphone" name="phone" id="phone" required>
-  
+      <input type="text" placeholder="Entrez numéro de téléphone '05-45-67-17-27' "name="phone" id="phone" required>
+      
       <label for="adress"><b>Adresse</b></label>
       <input type="text" placeholder="Entrez adresse" name="adress" id="adress" required>
   
@@ -525,11 +526,33 @@ $this-> affichMenu();
       <input type="password" placeholder="Enter Password" name="psw" id="psw" required><br/>
   
       <h6>Voulez vous devenir un transporteur chez nous ?</h6>
-      <input type="radio" name="1" id="1" value="1" required>
+      <input type="radio" name="radioTrans" id="1" value="1" class ="radioTrans" required>
       <label for="1"><b>Oui</b></label>
-      <input type="radio" name="0" id="0" value="0">
+      <input type="radio" name="radioTrans" id="0" value="0"  class ="radioTrans" required >
       <label for="0"><b>Non</b></label>
   
+
+        <!---Formulaire d'un transporteur--->
+        <hr>
+                    <div class="container inscription padding" id="transDivInscr">
+                        <h4 class="text-center"> Plus que  quelques étapes encore !</h4>
+                        <h6 class="text-center" style="margin-bottom:  2.5rem;"> Veuillez entrez les wilayas que vous comptez desservir.</h6>
+                        <div class="row padding"  id="inscriptionTrans">
+
+                               <!-- <label for="depart"><b>Départ :</b></label>
+                                <input type="number"  min="1"max="48" placeholder="1" name="depart" id="depart-0" required>
+
+                                <label for="arrivee"><b>Arrivée :</b></label>
+                                <input type="number"  min="1"max="48" placeholder="1" name="arrivee" id="arrivee-0" required> -->
+                        </div>
+                        <button id="btnTrajet" type="button" class="btn btn-outline-secondary" style="font-size :1.4rem;"><b>+</b></button>
+                        <h6 class="text-center" style="margin-bottom: .5rem;"> Voulez vous devenir un transporteur certifié ?</h6>
+                                <input type="radio" name="radioTransCertif" id="1" value="1" class ="radioTransCertif" required>
+                                <label for="1"><b>Oui</b></label>
+                                <input type="radio" name="radioTransCertif" id="0" value="0"  class ="radioTransCertif" required >
+                                <label for="0"><b>Non</b></label>
+                    </div>
+
       <hr>
       <button type="submit" class="registerbtn">S'inscrire</button>
     </div>
