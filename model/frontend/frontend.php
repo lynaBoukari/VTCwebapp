@@ -25,28 +25,6 @@ class front_model {
            return mysqli_query($c,$r);
        }
 
-       public function filtrerAnnonce ($depart, $arrivee ) {
-         
-          $c= $this->connect($this->dbname, $this->host, $this->user, $this->password) ;
-            $rfa=null;
-  
-            if(isset($depart) && isset($arrivee)){
-           /* Recuperer l id du trajet correspondant aux destination du filtre */
-           
-          $idTrajet= $this->chercherTrajet($depart, $arrivee);
-       
-          if($idTrajet->num_rows >0) {
-           /* Recuperer toutes les annonces qui ont l'id du trajet*/
-           while ($row = mysqli_fetch_assoc($idTrajet)) {
-          $qfa= "select * from annonce where annonce.idTrajet= '" .$row['idTrajet'] . " ' ";
-          $rfa= $this->requete($c,$qfa);
-            }  
-        }
-          $this-> deconnect($c);
-          return $rfa;
-       }
-    }
-
 public function chercherTrajet($depart, $arrivee){
     $c=$this->connect($this->dbname, $this->host, $this->user, $this->password) ;
      /* Recuperer l id du trajet correspondant aux destination du filtre */
@@ -61,18 +39,21 @@ public function ajouterTrajet($depart, $arrivee)
 {
      $c=$this->connect($this->dbname, $this->host, $this->user, $this->password) ;
      $idTrajet= $this->chercherTrajet($depart, $arrivee);
-    if($idTrajet==null)
+     if($idTrajet->num_rows ==0)
     {
         $qtrajet="insert into trajet(depart,arrivee) values ('".$depart."','".$arrivee."')";
             /*$qtrajet->bindParam(1, $depart);
         $qtrajet->bindParam(2, $arrivee);*/
         $this-> requete($c,$qtrajet);
         $idTrajet= $this->chercherTrajet($depart, $arrivee);
+        
     }
     $this-> deconnect($c);
     return $idTrajet;
 }
-       public function ajouterAnnonce($depart,$arrivee,$typeTransport,$poidInit,$poidFinal,$volumeInit,$volumeFinal,$moyenTransport,$image,$idUser,$titre)
+     
+
+        public function ajouterAnnonce($depart,$arrivee,$typeTransport,$poidInit,$poidFinal,$volumeInit,$volumeFinal,$moyenTransport,$image,$idUser,$titre)
        {
         $c=$this->connect($this->dbname, $this->host, $this->user, $this->password) ;
 
@@ -130,16 +111,7 @@ public function ajouterTrajet($depart, $arrivee)
             return $rTransporter;
         }
          
-        public function inscription($fname, $lname, $email, $password, $phone, $adress, $isTransporter){
-            $c=$this->connect($this->dbname, $this->host, $this->user, $this->password) ;
-            $quser="insert into user(fname,lname,email,password,phone,adress,isTransporter) values ('".$fname."','".$lname."','".$email."','".$password."','".$phone."','".$adress."','".$isTransporter."' )";
-            $this-> requete($c,$quser);
-            $this-> deconnect($c);
-        }
-
-
-
-
-
+      
+                
 
 }
