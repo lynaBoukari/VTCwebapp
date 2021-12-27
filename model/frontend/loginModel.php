@@ -2,13 +2,10 @@
 require_once('./controller/frontend.php');
 require_once('./model/frontend/frontend.php');
 class login_model {
-
+   
     public function login($username,$password){
-
-        session_start();
-        $_SESSION['valide']='non';
-
-        $fm=new front_model();
+     
+    $fm=new front_model();
     $c=$fm->connect($fm->dbname, $fm->host, $fm->user, $fm->password) ;
 
         // prevent sql injections/ clear user invalid inputs
@@ -33,6 +30,9 @@ class login_model {
                             $err = " Mot de passe erroné! revoyez le ou inscrivez vous si vous ne l'avez pas fait. ";
                     } else {
                             if($row['isAdmin'] =='1') {
+                                if(!isset($_SESSION)){
+                                    session_start();
+                                }
                                 $_SESSION['id'] = $row['idUser'];	
                                 $_SESSION['user_type']="admin";
                                 $_SESSION['username'] = $row['username'];
@@ -40,12 +40,18 @@ class login_model {
                                 $err=' Bienvenu Admin :'.   $_SESSION['username']. ' .' ;
                             }else {
                                 if($row['isTransporter'] ==1) {
+                                    if(!isset($_SESSION)){
+                                        session_start();
+                                    }
                                 $_SESSION['id'] = $row['idUser'];	
                                 $_SESSION['user_type']="transporter";
                                 $_SESSION['username'] = $row['username'];
                                 $_SESSION['valide']='oui';
                                 $err=' Bienvenu Transporteur :'.   $_SESSION['username']. ' .' ;
                                 }else{
+                                    if(!isset($_SESSION)){
+                                        session_start();
+                                    }
                                     $_SESSION['id'] = $row['id'];	
                                     $_SESSION['user_type']="client";
                                     $_SESSION['username'] = $row['username'];
@@ -62,12 +68,13 @@ class login_model {
         return $err;
     }
 
- public function signout()
+ public function logout()
     {
-        session_start();
+        if(isset($_SESSION)){
+         $_SESSION['valide']='non';
         session_unset();
         session_destroy();
-        
+        }
     }
 
 }

@@ -157,6 +157,13 @@ public function affichFormRecherche(){
 </select>
 
 <button type="submit" class="btn btn-primary my-1" name="submit">Recherche</button>
+<?php
+    if( isset($_SESSION['valide']) && $_SESSION['valide']=='oui'){
+?>
+<a class=" btn btn-primary my-1" href="./index.php?titre=ajouterAnnonce" style="margin-left:1rem;">Nouvelle Annonce</a>
+<?php
+    }
+?>
 </form>
 </div>
 <?php
@@ -309,7 +316,7 @@ public function affichAnnonce($depart, $arrivee) {
                    <div class="card-body">
                       <h4 class="card-title"> '.$rowfa['titre'].' </h4>
                       <p class="card-text"> '. $description.' ...</p>
-                      <a href="#" class="btn btn-outline-secondary">Voir la suite</a>
+                      <a href="./index.php?titre=DetailsAnnonce&id='.$rowfa['idAnnonce'].'" class="btn btn-outline-secondary">Voir la suite</a>
                    </div>
            </div>
             </div>'; 

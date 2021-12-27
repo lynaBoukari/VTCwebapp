@@ -1,30 +1,46 @@
 <?php
+// inistialisation
+session_start();
 
 require_once('.\controller\frontend.php');
 $c=new front_controller();
 $c->afficher_login();
 
-
 if(isset($_GET["titre"]))
 { 
-    if($_GET["titre"]=="Accueil")
+    switch($_GET["titre"])
     {
-$c->afficher_page_principal() ;
-}else{
-    if($_GET["titre"]=="Presentation") {
-$c->afficher_page_presentation("Presentation");
-    }else{
-        if($_GET["titre"]=="Sinscrire") {
-            $c->afficher_page_inscription();
-        }
-    }
+
+case 'Accueil' :
+         $c->afficher_page_principal() ;
+            break ;
+case 'Presentation' :
+        $c->afficher_page_presentation();
+            break ;
+  case 'Sinscrire' :
+        $c->afficher_page_inscription();
+            break ;
+    case 'Contact':
+        $c->afficher_contact();
+        break ;
+    case 'acueil' :
+        $c->logout();
+        break ;
+    case 'DetailsAnnonce' :
+        $c->afficher_detailsAnnonce() ;
+        break ;
+    case 'ajouterAnnonce' :
+        $c->afficher_ajouterAnnonce();
+        break ;
+
 }
 }else {
-    $c->afficher_page_principal("Accueil") ;
     
-
-}
-
-/*if($_SESSION['valide']=='oui' && $_SESSION['user_type']=='admin'){
-    echo '<h1> bienvenu admin </h1>';
-}*/
+   if( isset($_SESSION['valide']) && $_SESSION['valide']=='oui')
+    {
+     $c->afficher_page_principal() ;
+    } else {
+        $_SESSION['valide']='non';
+        $c->afficher_page_principal() ;
+    }
+    }
