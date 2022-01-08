@@ -8,6 +8,7 @@ public function  entetePage($titre) {
 <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -20,12 +21,11 @@ public function  entetePage($titre) {
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
         <script src="./public/js/script.js"></script>   
-        <link href="./public/css/style.css" rel="stylesheet" /> 
-        
+        <link href="/ProjetTDW/public/css/style.css?<?=  filemtime( $_SERVER['DOCUMENT_ROOT'] . "/ProjetTDW/public/css/style.css" )  ?>" type="text/css" rel="stylesheet" />
 
         <!--- le titre de la page est specifié dynamiquement--->
         <title><?= $titre ?></title>
-    </head>
+        </head>
 <?php
 }
 
@@ -33,7 +33,7 @@ public function  entetePage($titre) {
     $c = new front_controller();
     ?>
     <!--Navigation BAR-->
-<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top" > 
+<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top" > 
     <div class="container-fluid">
  <a class="navbar-brand" href="./index.php?titre=Accueil"> <img src="./public/images/vtcLogo.png" alt="Logo" style="width:100% ; height: 30px;"></a>
  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarResponsive" >
@@ -62,20 +62,20 @@ public function  entetePage($titre) {
                   {
              ?>
              <li class="nav-item">
-             <button type="button" class=" btn btn-primary nav-link"  onclick="document.getElementById('Loginmodal').style.display='block'" >Se connecter</button>
+             <button type="button" class=" btn btn-primary nav-link"  onclick="document.getElementById('Loginmodal').style.display='block'" >Se connecter &nbsp; <i class="fa fa-sign-in" aria-hidden="true"></i> </button>
              </li>
              <li class="nav-item">
-                 <a type="button" class=" btn btn-primary nav-link" href="./index.php?titre=Sinscrire">S'inscrire</a>
+                 <a type="button" class=" btn btn-primary nav-link" href="./index.php?titre=Sinscrire">S'inscrire &nbsp;<i class="fa fa-user-plus" aria-hidden="true"></i></a>
              </li>
              <?php 
                     } else {
                         if(isset($_SESSION['valide']) && $_SESSION['valide']=='non') {
                             ?>
                             <li class="nav-item">
-                            <button type="button" class=" btn btn-primary nav-link my-1"  onclick="document.getElementById('Loginmodal').style.display='block'" >Se connecter</button>
+                            <button type="button" class=" btn btn-primary nav-link my-1"  onclick="document.getElementById('Loginmodal').style.display='block'" >Se connecter &nbsp; <i class="fa fa-sign-in" aria-hidden="true"></i></button>
                             </li>
                             <li class="nav-item">
-                                <a type="button" class=" btn btn-primary nav-link my-1" href="./index.php?titre=Sinscrire">S'inscrire</a>
+                                <a type="button" class=" btn btn-primary nav-link my-1" href="./index.php?titre=Sinscrire">S'inscrire &nbsp;<i class="fa fa-user-plus" aria-hidden="true"></i></a>
                             </li>
                             <?php 
                         } else {
@@ -83,10 +83,11 @@ public function  entetePage($titre) {
                         
                             ?>
                             <li class="nav-item">
-             <a class=" btn btn-primary nav-link my-1 " href="./index.php?titre=acueil" >Se deconnecter</a>
+             <a class=" btn btn-primary nav-link my-1 " href="./index.php?titre=acueil" >Se deconnecter&nbsp; <i class="fa fa-sign-out" aria-hidden="true"></i> </a>
              </li>
              <li class="nav-item">
-                 <a type="button" class=" btn btn-primary nav-link my-1" href="./index.php?titre=Profile">Profile</a>
+             
+                 <a type="button" class=" btn btn-primary nav-link my-1" href="./index.php?titre=Profile"><i class="fa fa-user" ></i> &nbsp;  Mon Profile</a>
              </li>
              <?php
                         }

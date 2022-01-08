@@ -32,6 +32,9 @@ case 'Presentation' :
     case 'ajouterAnnonce' :
         $c->afficher_ajouterAnnonce();
         break ;
+        case 'Profile' :
+            $c->afficher_clientProfile();
+            break ;
 
 }
 }else {

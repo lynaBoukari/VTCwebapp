@@ -8,6 +8,7 @@ require_once('./view/frontend/inscriptionView.php');
 require_once('./view/frontend/contactView.php');
 require_once('./view/frontend/detailsAnnonceView.php');
 require_once('./view/frontend/ajouterAnnonceView.php');
+require_once('./view/frontend/clientProfileView.php');
 
 require_once('./model/frontend/frontend.php');
 require_once('./model/frontend/accueilModel.php');
@@ -16,6 +17,7 @@ require_once('./model/frontend/loginModel.php');
 require_once('./model/frontend/contactModel.php');
 require_once('./model/frontend/detailsAnnonceModel.php');
 require_once('./model/frontend/ajouterAnnonceModel.php');
+require_once('./model/frontend/clientProfileModel.php');
 
 class Front_controller{
 
@@ -112,6 +114,36 @@ public function afficher_login(){
  public function afficher_ajouterAnnonce() {
     $v = new ajouterAnnonce_view();
     $v->affichAjouterAnnonce();
+ }
+
+
+ public function clientProfile_info() {
+    $m= new clientProfile_model();
+   $info= $m->getClientInfo();
+   return $info;
+}
+
+public function transProfile_info() {
+    $m= new clientProfile_model();
+   $info= $m->getTransInfo();
+   return $info;
+}
+
+public function  getTrajets_Info($idTransporter){
+    $m= new clientProfile_model();
+    $info= $m->getTrajetsInfo($idTransporter);
+    return $info;
+}
+
+public function  getTrajet_Info($idTrajet) {
+    $m= new clientProfile_model();
+    $info= $m->getTrajetInfo($idTrajet) ;
+    return $info;
+}
+
+ public function afficher_clientProfile() {
+        $v= new clientProfile_view();
+        $v->affichClientProfile();
  }
 
 }

@@ -87,14 +87,16 @@ class detailsAnnonce_view {
     $vf->entetePage("Détails de l'annonce");
     $vf-> affichMenu();
     ?>
-    <body>
+
+<body>
     <?php
     $this->affichDetails();
 
    $vf-> affichFooter();
    ?>
-    </body>
-    </html>
-    <?php
+</body>
+
+</html>
+<?php
         }
 }
