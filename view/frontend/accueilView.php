@@ -171,7 +171,7 @@ public function affichFormRecherche(){
 
 
 // fonction qui affiche les 8 annonces aléatoires à la page d'accueil 
-public function affichCadre(){
+/*public function affichCadre(){
     ?>
 
     <!------ Cadres d'affichages------>
@@ -273,6 +273,7 @@ public function affichCadre(){
 
 <?php
 }
+*/
 
 // fonction pour afficher le bouton qui mène vers la page presentation 
 public function affichBoutonPresent(){
@@ -312,7 +313,7 @@ public function affichAnnonce($depart, $arrivee) {
            $description= substr($rowfa['description'],0,20);
            echo '<div class="col-md-3">
            <div class="card">
-                   <img class="card-img-top" src="./public/images/'.$rowfa["image"].'" alt="Annonce image"></img>
+                   <img class="card-img-top" src="'.$rowfa['image'].'" alt="Annonce image" style="width:100%; height:10rem"></img>
                    <div class="card-body">
                       <h4 class="card-title"> '.$rowfa['titre'].' </h4>
                       <p class="card-text"> '. $description.' ...</p>
@@ -347,30 +348,89 @@ public function affichAnnonce($depart, $arrivee) {
  
 
 
-   // la main fonction qui affiche toute la page principale la page d'accueil
+   
 
-   public function affichPrincipal(){
-       $vf=new front_view();
-    $vf->entetePage("Accueil");
-    ?>
-    <body>
-    <?php
-   $vf-> affichMenu();
-    $this-> affichDiaporama();
-    $this-> affichFormRecherche();
-    if(!isset($_POST['submit'])) {
-    $this-> affichCadre();}
-    else{
-    $this->affichResultatsRecherche();
+
+
+     /************************************************* */
+
+
+     public function affichCadre(){
+     $c=new front_controller();
+     $rfa=null;
+    $rfa= $c->afficher_random_annonces();
+    /* condition si le trajet n'existe pas dans la BDD*/
+    if ($rfa==null){
+        echo '  <div class="row padding">
+        <h5> Pas d\'annonces...</h5>
+        </div>';}
+        /* condition si le trajet existe mais pas d'annonces correspendantes*/
+        else{
+    if ($rfa->num_rows ==0){
+        echo '  <div class="row padding">
+        <h5> Pas d\'annonces...</h5>
+        </div>';
     }
-    $this-> affichBoutonPresent();
-     $vf-> affichFooter();
-    ?>
-     </body>
-    </html>
-    
-    <?php
-     }
+    /*  dans le cas où le trajet existe et il ya des annonces*/
+    else{
+        echo '  <div class="row padding">';
+        $i=0;
+        $j=1;
+     foreach ($rfa as $rowfa ){
+            $description= substr($rowfa['description'],0,20);
+            echo '<div class="col-md-3">
+            <div class="card">
+                    <img class="card-img-top" src="'.$rowfa['image'].'" alt="Annonce image" style="width:100%; height:10rem"></img>
+                    <div class="card-body">
+                       <h4 class="card-title"> '.$rowfa['titre'].' </h4>
+                       <p class="card-text"> '. $description.' ...</p>
+                       <a href="./index.php?titre=DetailsAnnonce&id='.$rowfa['idAnnonce'].'" class="btn btn-outline-secondary">Voir la suite</a>
+                    </div>
+            </div>
+             </div>'; 
+           
+             if($i==4 and $j<2){
+              
+                 $i=0;
+                 $j=$j+1;
+           
+             }   
+            else{
+             if ($i==4 and $j==2){
+                echo '</div>';
+                 break;
+             }   }
+             $i=$i+1; 
+          
+         }
+         
+    }
+ }
+}
 
+// la main fonction qui affiche toute la page principale la page d'accueil
+
+public function affichPrincipal(){
+    $vf=new front_view();
+ $vf->entetePage("Accueil");
+ ?>
+ <body>
+ <?php
+$vf-> affichMenu();
+ $this-> affichDiaporama();
+ $this-> affichFormRecherche();
+ if(!isset($_POST['submit'])) {
+ $this-> affichCadre();}
+ else{
+ $this->affichResultatsRecherche();
+ }
+ $this-> affichBoutonPresent();
+  $vf-> affichFooter();
+ ?>
+  </body>
+ </html>
+ 
+ <?php
+  }
 
 }

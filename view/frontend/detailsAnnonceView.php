@@ -29,7 +29,7 @@ class detailsAnnonce_view {
                            
                                 <div class="col-md-4" style=" border-right: 0.11rem solid #c9c9c9;" >
                                     
-                                    <img src="./public/images/colis.png" width="100%" alt="Product Image"></img>
+                                    <img src="'.$row['image'].'" width="100%" alt="Product Image"></img>
                                     ';
                                     if( isset($_SESSION['valide']) && $_SESSION['valide']=='oui')
                                     { echo '

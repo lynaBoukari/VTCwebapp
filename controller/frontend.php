@@ -30,6 +30,11 @@ public function afficher_annonces($depart, $arrivee){
    $rfa= $m->filtrerAnnonce($depart, $arrivee);
    return $rfa;
 }
+public function afficher_random_annonces(){
+    $m=new accueil_model();
+   $rfa= $m->randomAnnonce();
+   return $rfa;
+}
 
 public function afficher_page_presentation()
 {
@@ -99,9 +104,9 @@ public function afficher_login(){
     $v->affichPageDetails();
  }
 
- public function ajouterAnnonce($depart,$arrivee,$typeTransport,$poidInit,$poidFinal,$volumeInit,$volumeFinal,$moyenTransport,$image,$idUser,$titre,$description) {
+ public function ajouterAnnonce($depart,$arrivee,$typeTransport,$poidInit,$poidFinal,$volumeInit,$volumeFinal,$moyenTransport,$idUser,$titre,$description) {
     $m = new ajouterAnnonce_model();
-    $msg= $m->ajouterAnnonce($depart,$arrivee,$typeTransport,$poidInit,$poidFinal,$volumeInit,$volumeFinal,$moyenTransport,$image,$idUser,$titre,$description);
+    $msg= $m->ajouterAnnonce($depart,$arrivee,$typeTransport,$poidInit,$poidFinal,$volumeInit,$volumeFinal,$moyenTransport,$idUser,$titre,$description);
     return $msg;
  }
  public function afficher_ajouterAnnonce() {

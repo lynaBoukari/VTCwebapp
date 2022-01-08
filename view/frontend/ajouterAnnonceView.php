@@ -5,7 +5,7 @@ require_once('./view/frontend/frontend.php');
 class ajouterAnnonce_view {
     public function affichFormAnnonce() {
     ?>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
     <div class="container inscription">
       <h1>Nouvelle Annonce</h1>
       <p>Veuillez remplir ce formulaire pour ajouter une nouvelle annonce.</p>
@@ -127,9 +127,12 @@ class ajouterAnnonce_view {
 
 
 <!----- suite des informations ---->
-      <label for="image"><b>Image </b></label>
-      <input type="text" placeholder="Username 'john@doe103@@$' "  name="image"  >
 
+      <label for="image" class="form-label"><b>Une image de l'annonce &nbsp;&nbsp;&nbsp;&nbsp; </b></label>
+    <input class="form-control my-1" type="file"name="image"   placeholder=" Choisir une image" >
+      <p>
+      </br>
+  </p>
       <label for="typeTransport"><b>Type de transport </b></label>
       <input type="text" placeholder="Ex : Colis de vetements...." name="typeTransport"  required>
   
@@ -169,7 +172,7 @@ class ajouterAnnonce_view {
 
     if(isset($_POST['submitAnnonce'])){
         $c=new front_controller();
-       $msg= $c->ajouterAnnonce($_POST['ajouterWilaya1'],$_POST['ajouterWilaya2'],$_POST['typeTransport'],$_POST['poidInit'],$_POST['poidFinal'],$_POST['volumeInit'],$_POST['volumeFinal'],$_POST['moyenTransport'],$_POST['image'],$_SESSION['id'],$_POST['titre'],$_POST['description']);
+       $msg= $c->ajouterAnnonce($_POST['ajouterWilaya1'],$_POST['ajouterWilaya2'],$_POST['typeTransport'],$_POST['poidInit'],$_POST['poidFinal'],$_POST['volumeInit'],$_POST['volumeFinal'],$_POST['moyenTransport'],$_SESSION['id'],$_POST['titre'],$_POST['description']);
        echo $msg;
     }
     $vf-> affichFooter();

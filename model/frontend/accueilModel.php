@@ -25,4 +25,14 @@ public function filtrerAnnonce ($depart, $arrivee ) {
  }
 }
 
+public function randomAnnonce(){
+  $fm=new front_model();
+  $c=$fm->connect($fm->dbname, $fm->host, $fm->user, $fm->password) ;
+  $qfa= "select * from annonce ORDER BY RAND ( )  LIMIT 8  ";
+  $rfa= $fm->requete($c,$qfa);
+
+  $fm-> deconnect($c);
+  return $rfa;
+}
+
 }
