@@ -124,7 +124,6 @@ $(document).ready(function()
     {
         ShowHideDivProfile();
         ShowHideDiv();
-
         addTrajet();
         addTrajetProfile();
 

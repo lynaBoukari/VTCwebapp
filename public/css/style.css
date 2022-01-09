@@ -5,8 +5,8 @@ body {
 }
 
 body {
-    margin: 2.5%;
-    padding: 2.5%;
+    margin: 2%;
+    padding: 3%;
     background-color: #f9f9f9;
 }
 
@@ -32,6 +32,7 @@ body {
 }
 
 footer {
+    padding: auto;
     width: 100%;
     background-color: #343a40;
     color: #d5d5d5;
@@ -354,4 +355,21 @@ input[type=password]:focus {
 
 .modifProfile {
     width: 100%;
+}
+
+.vtcDiapo img {
+    width: 100%;
+}
+
+.detailsNews {
+    width: 100%;
+    background-color: #e0e0e0;
+}
+
+.detailsNews img {
+    width: 100%;
+}
+
+.detailsNews a {
+    color: rgb(14, 151, 103);
 }

@@ -9,6 +9,8 @@ require_once('./view/frontend/contactView.php');
 require_once('./view/frontend/detailsAnnonceView.php');
 require_once('./view/frontend/ajouterAnnonceView.php');
 require_once('./view/frontend/clientProfileView.php');
+require_once('./view/frontend/newsView.php');
+require_once('./view/frontend/newsDetailsView.php');
 
 require_once('./model/frontend/frontend.php');
 require_once('./model/frontend/accueilModel.php');
@@ -18,6 +20,7 @@ require_once('./model/frontend/contactModel.php');
 require_once('./model/frontend/detailsAnnonceModel.php');
 require_once('./model/frontend/ajouterAnnonceModel.php');
 require_once('./model/frontend/clientProfileModel.php');
+require_once('./model/frontend/newsModel.php');
 
 class Front_controller{
 
@@ -145,5 +148,24 @@ public function  getTrajet_Info($idTrajet) {
         $v= new clientProfile_view();
         $v->affichClientProfile();
  }
+ public function getNews(){
+    $m= new news_model();
+    $info= $m-> getNews() ;
+    return $info;
+ }
 
+ public function getNews_details($idNews){
+    $m= new news_model();
+    $info= $m->getNewsInfo($idNews) ;
+    return $info;
+ }
+
+ public function afficher_news(){
+    $v= new news_view();
+    $v->affichNewsPage();
+ }
+ public function afficher_detailsNews(){
+    $v= new detailsNews_view();
+    $v->affichNewsDetails();
+ }
 }
