@@ -3,7 +3,7 @@ require_once('./controller/frontend.php');
 require_once('./view/frontend/frontend.php');
 
 class clientProfile_view {
-   public function affichProfile(){
+   public function affichProfile($content){
 
 ?>
 
@@ -15,19 +15,19 @@ class clientProfile_view {
 
                 <h6> Bienvenue <?= $_SESSION['username'] ?></h6>
                 <hr class="dark">
-                <button class="btn-profile"> <i class="fa fa-user" aria-hidden="true"></i> Mes informations</button>
-                <button class="btn-profile"><i class="fa fa-bullhorn" aria-hidden="true"></i>Mes annonces</button>
-                <button class="btn-profile"><i class="fa fa-address-card" aria-hidden="true"></i>Mes
-                    transactions</button>
+                <a class="btn btn-profile"  href="./index.php?titre=Profile/MesInformations"> <i class="fa fa-user" aria-hidden="true"></i> Mes informations</a>
+                <a class="btn btn-profile" href="./index.php?titre=Profile/MesAnnonces"><i class="fa fa-bullhorn" aria-hidden="true"></i>Mes annonces</a>
+                <a class="btn btn-profile" href="./index.php?titre=Profile/MesTransactions"><i class="fa fa-address-card" aria-hidden="true" ></i>Mes
+                    transactions</a>
                 <?php if($_SESSION['user_type']=='transporter')  {?>
-                <button class="btn-profile"><i class="fa fa-credit-card" aria-hidden="true"></i>Mes gains</button>
+                <a class="btn btn-profile" href="./index.php?titre=Profile/MesGains"><i class="fa fa-credit-card" aria-hidden="true" ></i>Mes gains</a>
                 <?php }?>
             </div>
 
         </div>
         <div class="col-md-8">
             <?php
-                       $this-> affichInformation();
+            echo $content;
                        ?>
         </div>
     </div>
@@ -39,6 +39,7 @@ class clientProfile_view {
 
 
     public function affichInformation(){
+        ob_start();
         $c=new front_controller();
         $info=$c->clientProfile_info();
         $infoT=$c->transProfile_info();
@@ -72,35 +73,46 @@ class clientProfile_view {
         <label for="psw"><b>Password</b></label>
         <input type="text" value="<?=$row['password']?>" name="password" id="password" required><br />
 
-        <h6>Un transporteur chez nous ?</h6>
-        <?php
-            if ($row['isTransporter']=='0') {
-            ?>
-        <input type="radio" name="radioTransp" id="1" value="1" class="radioTransp" required>
-        <label for="1"><b>Oui</b></label>
-        <input type="radio" name="radioTransp" id="0" value="0" class="radioTransp" required checked="checked">
-        <label for="0"><b>Non</b></label>
-        <?php
-         } else{
-            ?>
-        <input type="radio" name="radioTransp" id="1" value="1" class="radioTransp" required checked="checked">
-        <label for="1"><b>Oui</b></label>
-        <input type="radio" name="radioTransp" id="0" value="0" class="radioTransp" required>
-        <label for="0"><b>Non</b></label>
-
-
-        <!---Formulaire d'un transporteur--->
         <hr>
         <?php
+            if ($row['isTransporter']=='1') {
+                echo"<h6>Vous etes un transporteur chez nous. </h6> <p><br/></p> ";
+                foreach ($infoT as $rowT) {
+                    if($rowT['statutCertif'] !=null){
+                        ?>
 
-    foreach ($infoT as $rowT) {
+        <h6 style="margin-bottom: .5rem;"> Un transporteur certifié ?</h6>
+        <p> Le status de votre certificat : <b> <?=$rowT['statutCertif']?> </b> </p>
+
+        <?php
+        }
+   }} else{
+    echo"<h6>Vous n'etes pas un transporteur chez nous. </h6><p><br/></p> ";
+}
+ ?>
+        <hr>
+        <div class="row">
+            <h6>Voulez vous changer votre situation ? </h6>
+            <div class="col-md-12 ">
+                <input type="radio" name="radioTransp" id="1" value="1" class="radioTransp" required>
+                <label for="1"><b>Transporteur</b></label>
+                <input type="radio" name="radioTransp" id="0" value="0" class="radioTransp" required>
+                <label for="0"><b>Client</b></label>
+            </div>
+        </div>
+
+        <?php
+        foreach ($infoT as $rowT) {
        
-    ?>
+      ?>
+        <!---Formulaire d'un transporteur--->
+        <hr>
         <div class="container padding" id="WilayaTransporter">
             <div class="row">
                 <h6 style="margin-bottom:  2.5rem;">Les wilayas que vous comptez desservir : </h6>
                 <div class="col-md-12">
                     <ul>
+                        
                         <?php
 
                              $infoTrajets=$c->getTrajets_Info($rowT['idTransporter']);
@@ -114,55 +126,98 @@ class clientProfile_view {
                             <?=$rowTrajet['arrivee']?>
                         </li>
                         <?php
-                               }}
+                               }} }}
                             ?>
                     </ul>
+
+
+                    <div class="container-fluid padding" id="addTrajet">
+
+                        <div class="row padding">
+                            <div class="col-md-12" id="profileTrans">
+
+                            </div>
+                        </div>
+                        <center>
+                            <button id="btnTrajetP" type="button" class="btn btn-outline-secondary" style="font-size :1.4rem; width:50%" onclick="addInput()"><b>+</b></button>
+                        </center>
+                    </div>
+
+
                 </div>
-            </div>
-            <div id="divTrajetProfile">
-                <div class="row padding" id="profileTrans">
-                </div>
-
-                <button id="btnTrajet" type="button" class="btn btn-outline-secondary"
-                    style="font-size :1.4rem;"><b>+</b></button>
+                <hr>
+                <button type="submit" class="modifProfile btn btn-primary" name="submitModifier">Modifier</button>
             </div>
 
-            <?php
-                    
-                    ?>
-
-
-
-
-            <?php
-                            if($rowT['statutCertif'] !=null){
-                                ?>
-            <hr>
-            <h6 style="margin-bottom: .5rem;"> Un transporteur certifié ?</h6>
-            <p> Le status de votre certificat : <b> <?=$rowT['statutCertif']?> </b> </p>
-        </div>
-
-        <?php
-         }  } }
-            ?>
-        <hr>
-        <button type="submit" class="modifProfile btn btn-primary" name="submitModifier">Modifier</button>
-    </div>
-    </div>
 </form>
 
 <?php
-        } 
+        return ob_get_clean();
     }
-    public function affichClientProfile() {
+
+
+    public function affichAnnonce() {
+        ob_start();
+        $c=new front_controller();
+        $rfa=$c->getAnnonce_Info();
+        if($rfa->num_rows ==0){
+            echo '<div class="alert alert-secondary" role="alert">
+           Vous n\'avez pas encore publier d\'annonces.
+          </div>';
+        }else{
+            $i=0;$j=1;
+            echo'<div class="row padding" >';
+            foreach($rfa as $rowfa){ 
+                 $description= substr($rowfa['description'],0,20);
+                $titre= substr($rowfa['titre'],0,15);
+                echo '
+                
+                <div class="col-md-3">
+                <div class="card">
+                        <img class="card-img-top" src="'.$rowfa['image'].'" alt="News image" style="width:100%; height:10rem"></img>
+                        <div class="card-body">
+                           <h5 class="card-title"> '.$titre.'...</h5>
+                           <p class="card-text"> '. $description.' ...</p>
+                           <a href="./index.php?titre=DetailsAnnonce&id='.$rowfa['idAnnonce'].'" class="btn btn-outline-secondary">Voir les détails</a>
+                        </div>
+                </div>
+                 </div>'; 
+               
+                 if($i==3 and $j<2){
+                  
+                    $i=0;
+                    $j=$j+1;
+    
+                    echo ' </div><div class="row padding">';
+                }   
+               else{
+                if ($i==4 and $j==2){
+            
+                    break;
+                } 
+              }
+                $i=$i+1; 
+             
+            }
+            echo '</div>';
+
+
+        }
+        ?>
+   
+        <?php
+        return ob_get_clean();
+    }
+    public function affichClientProfile($content) {
         $vf=new front_view();
         $vf->entetePage("Mon Profile");
         $vf-> affichMenu();
         ?>
 
 <body>
+
     <?php
-        $this->affichProfile();
+        $this->affichProfile($content);
     
        $vf-> affichFooter();
        ?>

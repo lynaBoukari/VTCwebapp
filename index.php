@@ -37,8 +37,15 @@ case 'Presentation' :
         $c->afficher_ajouterAnnonce();
         break ;
     case 'Profile' :
-            $c->afficher_clientProfile();
+            $c->afficher_clientProfile("");
             break ;
+    case 'Profile/MesInformations' :
+            $c->afficher_clientProfile($c->afficher_InfoProfile());
+            break ;
+    case 'Profile/MesAnnonces' :
+        $c->afficher_clientProfile($c->afficher_AnnonProfile());
+            break ;
+        
     case 'News' :
         $c->afficher_news();
         break ;

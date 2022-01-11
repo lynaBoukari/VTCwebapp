@@ -41,6 +41,14 @@ public function getTrajetInfo($idTrajet) {
                 $fm-> deconnect($c);
     return $ri;
 }
-
+public function getAnnonceInfo() {
+    $fm=new front_model();
+    $c=$fm->connect($fm->dbname, $fm->host, $fm->user, $fm->password) ;
+               $idUser=$_SESSION['id'];
+                $qi=" select * from annonce where annonce.idUser = '".$idUser."'";
+                $ri= $fm->requete($c,$qi);
+                $fm-> deconnect($c);
+    return $ri;
+}
 
 }

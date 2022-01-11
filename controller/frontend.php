@@ -145,11 +145,28 @@ public function  getTrajet_Info($idTrajet) {
     $info= $m->getTrajetInfo($idTrajet) ;
     return $info;
 }
+public function  getAnnonce_Info() {
+   $m= new clientProfile_model();
+   $info= $m->getAnnonceInfo() ;
+   return $info;
+}
 
- public function afficher_clientProfile() {
+ public function afficher_clientProfile($content) {
         $v= new clientProfile_view();
-        $v->affichClientProfile();
+        $v->affichClientProfile($content);
  }
+ public function afficher_InfoProfile() {
+   $v= new clientProfile_view();
+   $content= $v->affichInformation();
+   return $content;
+}
+public function afficher_AnnonProfile() {
+   $v= new clientProfile_view();
+   $content= $v->affichAnnonce();
+   return $content;
+}
+
+ 
  public function getNews(){
     $m= new news_model();
     $info= $m-> getNews() ;

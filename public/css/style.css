@@ -418,3 +418,7 @@ input[type=password]:focus {
 .rondStats {
     background-color: #e0dddd;
 }
+
+#addTrajet {
+    display: none;
+}

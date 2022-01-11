@@ -52,7 +52,7 @@ class login_model {
                                     if(!isset($_SESSION)){
                                         session_start();
                                     }
-                                    $_SESSION['id'] = $row['id'];	
+                                    $_SESSION['id'] = $row['idUser'];	
                                     $_SESSION['user_type']="client";
                                     $_SESSION['username'] = $row['username'];
                                     $_SESSION['valide']='oui';

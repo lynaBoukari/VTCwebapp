@@ -20,7 +20,7 @@ public function  entetePage($titre) {
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-        <script src="./public/js/script.js"></script>   
+        <script src="/ProjetTDW/public/js/script.js?<?=  filemtime( $_SERVER['DOCUMENT_ROOT'] . "/ProjetTDW/public/js/script.js" )  ?>" type="text/javascript"></script>   
         <link href="/ProjetTDW/public/css/style.css?<?=  filemtime( $_SERVER['DOCUMENT_ROOT'] . "/ProjetTDW/public/css/style.css" )  ?>" type="text/css" rel="stylesheet" />
 
         <!--- le titre de la page est specifié dynamiquement--->
