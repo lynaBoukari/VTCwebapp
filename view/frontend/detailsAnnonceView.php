@@ -47,6 +47,7 @@ class detailsAnnonce_view {
                                         <div class="row nconnectedDetails" >
                                             <label>
                                                 <h1> '.$row['titre'] .'<br/> </h1>
+                                                <h6><br/> <i class="fa fa-eye" aria-hidden="true"></i> &nbsp;&nbsp;  '. $row['nbrVus'] .'</h6>
                                                 <h6><br/><b>ID de l\'annonce :</b> '. $row['idAnnonce'] .'</h6>
                                                 <p><br/><b>Description de l\'annonce : </b> <br/>'. $row['description'].' </p>
                                                 <p><br/><b>Départ : </b> Wilaya N°'. $rowT['depart'] .'&nbsp;&nbsp;&nbsp;&nbsp;<b>Arrivée : </b>Wilaya N°'. $rowT['arrivee'] .'</p>

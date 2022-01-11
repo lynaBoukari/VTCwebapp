@@ -11,6 +11,7 @@ require_once('./view/frontend/ajouterAnnonceView.php');
 require_once('./view/frontend/clientProfileView.php');
 require_once('./view/frontend/newsView.php');
 require_once('./view/frontend/newsDetailsView.php');
+require_once('./view/frontend/statsView.php');
 
 require_once('./model/frontend/frontend.php');
 require_once('./model/frontend/accueilModel.php');
@@ -21,6 +22,7 @@ require_once('./model/frontend/detailsAnnonceModel.php');
 require_once('./model/frontend/ajouterAnnonceModel.php');
 require_once('./model/frontend/clientProfileModel.php');
 require_once('./model/frontend/newsModel.php');
+require_once('./model/frontend/statsModel.php');
 
 class Front_controller{
 
@@ -167,5 +169,41 @@ public function  getTrajet_Info($idTrajet) {
  public function afficher_detailsNews(){
     $v= new detailsNews_view();
     $v->affichNewsDetails();
+ }
+ public function afficher_stats(){
+   $v= new stats_view();
+   $v->affichStatsPage();
+ }
+
+ public function updateStats(){
+   $m= new stats_model();
+   $m->updateStats();
+   $m->getUserStats();
+ }
+ public function getUserStats(){
+   $m= new stats_model();
+  $nbr= $m->getUserStats();
+  return $nbr;
+ }
+ public function getTransStats(){
+   $m= new stats_model();
+  $nbr= $m-> getTransStats();
+  return $nbr;
+ }
+ public function getAnnonStats(){
+   $m= new stats_model();
+  $nbr= $m-> getAnnonStats();
+  return $nbr;
+ }
+ public function getVisitStats(){
+   $m= new stats_model();
+  $nbr= $m-> getVisitStats();
+  return $nbr;
+ }
+ 
+ public function getTopAnnonStats(){
+   $m= new stats_model();
+  $nbr= $m-> getTopAnnonStats();
+  return $nbr;
  }
 }

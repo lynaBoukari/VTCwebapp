@@ -8,6 +8,13 @@ class detailsAnnonce_model {
         $c=$fm->connect($fm->dbname, $fm->host, $fm->user, $fm->password) ;
         $qa="select * from annonce where idAnnonce = '".$idAnnonce."'";
         $ra= $fm->requete($c,$qa);
+
+        /****** incrementer annonce vues */
+        
+        $qa="update annonce SET nbrVus = nbrVus+ 1 where idAnnonce = '".$idAnnonce."'";
+        $r= $fm->requete($c,$qa);
+
+
         $fm-> deconnect($c);
         return $ra;
     }

@@ -44,14 +44,16 @@ class accueil_view {
 public function affichFormRecherche(){
     ?>
 <!--- formulaire de recherche--->
-
-<div class="container-fluid padding">
-    <div class="row">
+    <div class="container-fluid padding text-center">
+        <h1 id="annAcc">Annonces</h1>
+    </div>
+<div class="container-fluid padding  rechercheDiv">
+    <div class="row padding">
         <h6> Veuillez spécifer les informations de recherche d'annonces :</h6>
     </div>
     <form class="form-inline" method="post" action="">
 
-        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Départ :</label>
+        <label class="my-1 mr-2" for="inlineFormCustomSelectPref"><i class="fa fa-location-arrow" aria-hidden="true"></i> &nbsp;&nbsp;Départ :</label>
         <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="selectWilaya1">
 
             <option value="1">1- Adrar</option>
@@ -104,7 +106,7 @@ public function affichFormRecherche(){
             <option value="48">48- Relizane</option>
 
         </select>
-        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Arrivée :</label>
+        <label class="my-1 mr-2" for="inlineFormCustomSelectPref"><i class="fa fa-location-arrow" aria-hidden="true"></i>&nbsp;&nbsp; Arrivée :</label>
         <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="selectWilaya2">
 
             <option value="1">1- Adrar</option>
@@ -157,16 +159,20 @@ public function affichFormRecherche(){
             <option value="48">48- Relizane</option>
         </select>
 
-        <button type="submit" class="btn btn-primary my-1" name="submit">Recherche</button>
-        <?php
+        <button type="submit" class="btn btn-primary my-1" name="submit">Recherche &nbsp;&nbsp;<i class="fa fa-search" aria-hidden="true"></i></button>
+        </form>
+      <?php
     if( isset($_SESSION['valide']) && $_SESSION['valide']=='oui'){
 ?>
-        <a class=" btn btn-primary my-1" href="./index.php?titre=ajouterAnnonce" style="margin-left:1rem;">Nouvelle
-            Annonce</a>
+<center>
+<hr class="light padding">
+        <a class=" btn btn-primary my-1" href="./index.php?titre=ajouterAnnonce" style="">Nouvelle
+            Annonce &nbsp;&nbsp; <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+            </center>
         <?php
     }
 ?>
-    </form>
+   
 </div>
 <?php
 }
@@ -179,8 +185,9 @@ public function affichBoutonPresent(){
     ?>
 <!---- Bouton comment cela fonctionne ---->
 <div class="container-fluid padding">
+    <hr class="dark" >
     <div class="row text-center justify-content-center">
-        <a href="./index.php?titre=Presentation" class="btn btn-primary">Comment cela fonctionne ?</a>
+        <a href="./index.php?titre=Presentation" class="btn btn-primary"> <i class="fa fa-info-circle" aria-hidden="true"></i> &nbsp;&nbsp; Comment cela fonctionne ?</a>
     </div>
 </div>
 <?php
@@ -205,34 +212,44 @@ public function affichAnnonce($depart, $arrivee) {
    }
    /*  dans le cas où le trajet existe et il ya des annonces*/
    else{
-       echo '  <div class="row padding">';
+       echo '  <div class="row padding">
+       <div class="col-md-12" style="text-align: center; margin :1rem;">
+       <h2>Résultats de la recherche</h2>
+       </div>';
        $i=0;
        $j=1;
     foreach ($rfa as $rowfa ){
            $description= substr($rowfa['description'],0,20);
+           $titre= substr($rowfa['titre'],0,30);
            echo '<div class="col-md-3">
            <div class="card">
                    <img class="card-img-top" src="'.$rowfa['image'].'" alt="Annonce image" style="width:100%; height:10rem"></img>
                    <div class="card-body">
-                      <h4 class="card-title"> '.$rowfa['titre'].' </h4>
+                      <h5 class="card-title"> '.$titre.'... </h5>
                       <p class="card-text"> '. $description.' ...</p>
                       <a href="./index.php?titre=DetailsAnnonce&id='.$rowfa['idAnnonce'].'" class="btn btn-outline-secondary">Voir la suite</a>
                    </div>
            </div>
             </div>'; 
           
-            if($i==4 and $j<2){
-                echo '</div>';
+            if($i==3 and $j<2){
+              
                 $i=0;
                 $j=$j+1;
-                echo '  <div class="row padding">';
-            }       elseif ($i==4 and $j==2){
-               echo '</div>';
-                break;
+
+                echo ' </div><div class="row padding">';
             }   
+           else{
+            if ($i==3 and $j==2){
+        
+              
+                break;
+            } 
+          }
             $i=$i+1; 
          
         }
+        echo '</div>';
    }
 }
 }
@@ -266,36 +283,44 @@ public function affichAnnonce($depart, $arrivee) {
     }
     /*  dans le cas où le trajet existe et il ya des annonces*/
     else{
-        echo '  <div class="row padding">';
+        echo '  <div class="row padding">
+        <div class="col-md-12" style="text-align: center; margin :1rem;">
+        <h2>Notre sélection d\'annonces</h2>
+        </div>';
         $i=0;
         $j=1;
      foreach ($rfa as $rowfa ){
             $description= substr($rowfa['description'],0,20);
+            $titre= substr($rowfa['titre'],0,30);
             echo '<div class="col-md-3">
             <div class="card">
                     <img class="card-img-top" src="'.$rowfa['image'].'" alt="Annonce image" style="width:100%; height:10rem"></img>
                     <div class="card-body">
-                       <h4 class="card-title"> '.$rowfa['titre'].' </h4>
+                       <h5 class="card-title"> '.$titre.'</h5>
                        <p class="card-text"> '. $description.' ...</p>
                        <a href="./index.php?titre=DetailsAnnonce&id='.$rowfa['idAnnonce'].'" class="btn btn-outline-secondary">Voir la suite</a>
                     </div>
             </div>
              </div>'; 
            
-             if($i==4 and $j<2){
+             if($i==3 and $j<2){
               
-                 $i=0;
-                 $j=$j+1;
-           
-             }   
-            else{
-             if ($i==4 and $j==2){
-                echo '</div>';
-                 break;
-             }   }
-             $i=$i+1; 
-          
-         }
+                $i=0;
+                $j=$j+1;
+
+                echo ' </div><div class="row padding">';
+            }   
+           else{
+            if ($i==3 and $j==2){
+        
+              
+                break;
+            } 
+          }
+            $i=$i+1; 
+         
+        }
+        echo '</div>';
          
     }
  }

@@ -276,6 +276,12 @@ input[type=password] {
 /*      Style annonce details */
 
 .nconnectedDetails {
+    padding: 1rem 1rem 0rem 1rem;
+    background: #f1f1f1;
+}
+
+.connectedDetails {
+    padding: 0rem 1rem 1rem 1rem;
     background: #f1f1f1;
 }
 
@@ -372,4 +378,43 @@ input[type=password]:focus {
 
 .detailsNews a {
     color: rgb(14, 151, 103);
+}
+
+.rechercheDiv {
+    margin: 1rem 0rem 1rem 0rem;
+    padding: 3rem;
+    background-color: #343a40;
+    color: #f6f6f6ce;
+}
+
+.rechercheDiv:hover {
+    color: #f6f6f6;
+}
+
+#annAcc {
+    font-size: 4.5rem;
+}
+
+.oval {
+    height: 7rem;
+    background-color: #343a40;
+    border-radius: 50%;
+    width: 10rem;
+    margin-left: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #d1d1d1;
+}
+
+.statsDiv {
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.rondStats {
+    background-color: #e0dddd;
 }

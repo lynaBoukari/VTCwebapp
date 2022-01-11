@@ -41,30 +41,30 @@ class news_view {
             <div class="card">
                     <img class="card-img-top" src="'.$rowfa['image'].'" alt="News image" style="width:100%; height:10rem"></img>
                     <div class="card-body">
-                       <h4 class="card-title"> '.$titre.' ...</h4>
+                       <h5 class="card-title"> '.$titre.'...</h5>
                        <p class="card-text"> '. $description.' ...</p>
                        <a href="./index.php?titre=DetailsNews&id='.$rowfa['idNews'].'" class="btn btn-outline-secondary">Voir les détails</a>
                     </div>
             </div>
              </div>'; 
            
-             if($i==4 and $j<2){
+             if($i==3 and $j<2){
               
-                 $i=0;
-                 $j=$j+1;
-           
-             }   
-            else{
-             if ($i==4 and $j==2){
-                echo '  <div class="row padding">';
-               
-                 break;
-             }   }
-             $i=$i+1; 
-          
-         }
-         echo '</div>';
+                $i=0;
+                $j=$j+1;
+
+                echo ' </div><div class="row padding">';
+            }   
+           else{
+            if ($i==4 and $j==2){
+        
+                break;
+            } 
+          }
+            $i=$i+1; 
          
+        }
+        echo '</div>';
     }
  }
 }

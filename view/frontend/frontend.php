@@ -135,8 +135,8 @@ public function  entetePage($titre) {
                   <hr class="light">
                   <a  href="./index.php?titre=Accueil">Acceuil</a> <br />
                   <a  href="./index.php?titre=Presentation">Présentation</a> <br />
-                  <a href="#">News</a> <br />
-                  <a href="#">Statistiques</a> <br />
+                  <a href="./index.php?titre=News">News</a> <br />
+                  <a href="./index.php?titre=Statistiques">Statistiques</a> <br />
                   <a href="./index.php?titre=Contact">Contact</a> <br />
                   </div>
 

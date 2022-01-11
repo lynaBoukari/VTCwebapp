@@ -20,11 +20,11 @@ function ShowHideDivProfile() {
     $('input.radioTransp').change(function() {
 
         if ($(this).val() == '1') {
-            $("#divTrajetProfile").css("display", "block");
+            $("#WilayaTransporter").css("display", "block");
 
 
         } else {
-            $("#divTrajetProfile").css("display", "none");
+            $("#WilayaTransporter").css("display", "none");
         }
 
     })

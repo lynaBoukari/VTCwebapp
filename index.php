@@ -1,11 +1,12 @@
 <?php
 // inistialisation
 session_start();
+$_SESSION['session']=session_id();
 
 require_once('.\controller\frontend.php');
 $c=new front_controller();
 $c->afficher_login();
-
+$c->updateStats();
 if(isset($_GET["titre"]))
 { 
     switch($_GET["titre"])
@@ -25,6 +26,9 @@ case 'Presentation' :
         break ;
     case 'acueil' :
         $c->logout();
+        break ;
+    case 'Statistiques' :
+        $c->afficher_stats();
         break ;
     case 'DetailsAnnonce' :
         $c->afficher_detailsAnnonce() ;
