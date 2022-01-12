@@ -27,6 +27,9 @@ class clientProfile_view {
         </div>
         <div class="col-md-8">
             <?php
+            if($content==null){
+                echo '<div class="alert alert-info" > BIENVENUE DANS VOTRE ESPACE !</div>';
+            }
             echo $content;
                        ?>
         </div>
@@ -89,19 +92,7 @@ class clientProfile_view {
    }} else{
     echo"<h6>Vous n'etes pas un transporteur chez nous. </h6><p><br/></p> ";
 }
- ?>
-        <hr>
-        <div class="row">
-            <h6>Voulez vous changer votre situation ? </h6>
-            <div class="col-md-12 ">
-                <input type="radio" name="radioTransp" id="1" value="1" class="radioTransp" required>
-                <label for="1"><b>Transporteur</b></label>
-                <input type="radio" name="radioTransp" id="0" value="0" class="radioTransp" required>
-                <label for="0"><b>Client</b></label>
-            </div>
-        </div>
 
-        <?php
         foreach ($infoT as $rowT) {
        
       ?>
@@ -109,7 +100,7 @@ class clientProfile_view {
         <hr>
         <div class="container padding" id="WilayaTransporter">
             <div class="row">
-                <h6 style="margin-bottom:  2.5rem;">Les wilayas que vous comptez desservir : </h6>
+                <h6 style="margin-bottom:  .5rem;">Les wilayas que vous comptez desservir : </h6>
                 <div class="col-md-12">
                     <ul>
                         
@@ -130,7 +121,19 @@ class clientProfile_view {
                             ?>
                     </ul>
 
+                 
+        <hr>
+        <div class="row padding" style="margin-bottom:1.5rem;">
+            <h6>Voulez vous changer votre situation ? </h6>
+            <div class="col-md-12 ">
+                <input type="radio" name="radioTransp" id="1" value="1" class="radioTransp" required>
+                <label for="1"><b>Transporteur</b></label>
+                <input type="radio" name="radioTransp" id="0" value="0" class="radioTransp" required>
+                <label for="0"><b>Client</b></label>
+            </div>
+        </div>
 
+    
                     <div class="container-fluid padding" id="addTrajet">
 
                         <div class="row padding">
@@ -139,8 +142,10 @@ class clientProfile_view {
                             </div>
                         </div>
                         <center>
-                            <button id="btnTrajetP" type="button" class="btn btn-outline-secondary" style="font-size :1.4rem; width:50%" onclick="addInput()"><b>+</b></button>
+                            <p>Si vous souhaitez modifier vos trajets, veuillez les re-entrer: <br/></p>
+                            <button id="btnTrajetP" type="button" class="btn btn-outline-secondary" style="font-size :1rem; width:50%" onclick="addInput()"><b>Ajouter trajet &nbsp;&nbsp;<i class="fa fa-plus-circle" aria-hidden="true"></i></b></button>
                         </center>
+                        <hr>
                     </div>
 
 
@@ -152,6 +157,11 @@ class clientProfile_view {
 </form>
 
 <?php
+
+            if(isset($_POST['submitModifier'])){
+          $msg= $c->updateUser_Info($_POST['fname'],$_POST['lname'],$_POST['username'],$_POST['email'],$_POST['password'],$_POST['phone'],$_POST['adress'],$_POST['radioTransp']);
+                    echo ' <script> alert("'.$msg.'") </script>';
+        }
         return ob_get_clean();
     }
 
@@ -168,22 +178,41 @@ class clientProfile_view {
             $i=0;$j=1;
             echo'<div class="row padding" >';
             foreach($rfa as $rowfa){ 
+                $valide ="non validee";
+                $archive="";
+                if ($rowfa['valide']=='1')
+                { 
+                    $valide="validee";
+                }
+                if($rowfa['archive']=='1'){
+                        $archive="Annonce archivee" ;
+                }
                  $description= substr($rowfa['description'],0,20);
                 $titre= substr($rowfa['titre'],0,15);
                 echo '
                 
-                <div class="col-md-3">
+                <div class="col-md-4">
                 <div class="card">
+                
                         <img class="card-img-top" src="'.$rowfa['image'].'" alt="News image" style="width:100%; height:10rem"></img>
                         <div class="card-body">
                            <h5 class="card-title"> '.$titre.'...</h5>
                            <p class="card-text"> '. $description.' ...</p>
                            <a href="./index.php?titre=DetailsAnnonce&id='.$rowfa['idAnnonce'].'" class="btn btn-outline-secondary">Voir les détails</a>
-                        </div>
+                             <div class="alert alert-info row" role="alert" style="margin-top: 1rem">
+                             
+                             <div class="col col-md-1" style="display: flex; align-items: center;" > <i class="fa fa-info" aria-hidden="true"></i></div>
+                           <div class=" col col-md-11>
+                           <p class="card-text" >Annonce '.$valide.' <br/> </p>
+                           <p class="card-text">'.$archive.' </p>
+                           </div>
+                        
+                           </div>
+                           </div>
                 </div>
                  </div>'; 
                
-                 if($i==3 and $j<2){
+                 if($i==2 and $j<2){
                   
                     $i=0;
                     $j=$j+1;
@@ -191,7 +220,7 @@ class clientProfile_view {
                     echo ' </div><div class="row padding">';
                 }   
                else{
-                if ($i==4 and $j==2){
+                if ($i==3 and $j==2){
             
                     break;
                 } 

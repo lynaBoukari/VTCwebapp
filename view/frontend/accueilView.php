@@ -219,6 +219,7 @@ public function affichAnnonce($depart, $arrivee) {
        $i=0;
        $j=1;
     foreach ($rfa as $rowfa ){
+        if($rowfa['valide']=='1' && $rowfa['archive']!='1') {
            $description= substr($rowfa['description'],0,20);
            $titre= substr($rowfa['titre'],0,30);
            echo '<div class="col-md-3">
@@ -247,9 +248,11 @@ public function affichAnnonce($depart, $arrivee) {
             } 
           }
             $i=$i+1; 
-         
-        }
+        } }
+       
         echo '</div>';
+    
+    
    }
 }
 }
@@ -290,6 +293,7 @@ public function affichAnnonce($depart, $arrivee) {
         $i=0;
         $j=1;
      foreach ($rfa as $rowfa ){
+        if($rowfa['valide']=='1'  && $rowfa['archive']!='1') {
             $description= substr($rowfa['description'],0,20);
             $titre= substr($rowfa['titre'],0,30);
             echo '<div class="col-md-3">
@@ -319,9 +323,9 @@ public function affichAnnonce($depart, $arrivee) {
           }
             $i=$i+1; 
          
-        }
+        }}
         echo '</div>';
-         
+    
     }
  }
 }

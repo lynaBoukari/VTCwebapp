@@ -37,7 +37,7 @@ class login_model {
                                 $_SESSION['user_type']="admin";
                                 $_SESSION['username'] = $row['username'];
                                 $_SESSION['valide']='oui';
-                                $err=' Bienvenu Admin :'.   $_SESSION['username']. ' .' ;
+                                $err=' Bienvenu chers Admin :'.   $_SESSION['username']. '' ;
                             }else {
                                 if($row['isTransporter'] ==1) {
                                     if(!isset($_SESSION)){
@@ -47,7 +47,7 @@ class login_model {
                                 $_SESSION['user_type']="transporter";
                                 $_SESSION['username'] = $row['username'];
                                 $_SESSION['valide']='oui';
-                                $err=' Bienvenu Transporteur :'.   $_SESSION['username']. ' .' ;
+                                $err=' Bienvenu chers Transporteur :'.   $_SESSION['username']. ' ' ;
                                 }else{
                                     if(!isset($_SESSION)){
                                         session_start();
@@ -56,7 +56,7 @@ class login_model {
                                     $_SESSION['user_type']="client";
                                     $_SESSION['username'] = $row['username'];
                                     $_SESSION['valide']='oui';
-                                    $err=' Bienvenu Client :'.   $_SESSION['username']. ' .' ;
+                                    $err=' Bienvenu chers Client :'.   $_SESSION['username']. ' ' ;
 
                                 }
                             }

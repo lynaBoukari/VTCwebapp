@@ -59,10 +59,11 @@ $vf-> affichMenu();
 
                 <div class="row padding" id="inscriptionTrans">
                 </div>
-
-                <button id="btnTrajet" type="button" class="btn btn-outline-secondary"style="font-size :1.4rem;"><b>+</b></button>
-
-                <h6 class="text-center" style="margin-bottom: .5rem;"> Voulez vous devenir un transporteur certifié ?
+                    <center>
+                <button id="btnTrajet" type="button" class="btn btn-outline-secondary"style="font-size :1.4rem; width : 10rem"><b><i class="fa fa-plus-circle" aria-hidden="true"></i></b></button>
+                        </center>
+                        <hr>
+                <h6 class="text-center" style="margin: 1.5rem;"> Voulez vous devenir un transporteur certifié ?
                 </h6>
                 <input type="radio" name="radioTransCertif" id="1" value="'1'" class="radioTransCertif">
                 <label for="1"><b>Oui</b></label>

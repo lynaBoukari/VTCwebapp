@@ -85,11 +85,20 @@ public function  entetePage($titre) {
                             <li class="nav-item">
              <a class=" btn btn-primary nav-link my-1 " href="./index.php?titre=acueil" >Se deconnecter&nbsp; <i class="fa fa-sign-out" aria-hidden="true"></i> </a>
              </li>
+             <?php
+             if ($_SESSION['user_type'] != 'admin') {
+             ?>
              <li class="nav-item">
-             
                  <a type="button" class=" btn btn-primary nav-link my-1" href="./index.php?titre=Profile"><i class="fa fa-user" ></i> &nbsp;  Mon Profile</a>
              </li>
              <?php
+             } else {
+                ?>
+                <li class="nav-item">
+                    <a type="button" class=" btn btn-primary nav-link my-1" href="./index.php?titre=Dashboard"><i class="fa fa-tasks" aria-hidden="true"></i> &nbsp;  Dashboard</a>
+                </li>
+                <?php
+             }
                         }
                     }
                     }

@@ -1,5 +1,5 @@
 <?php
-/*set_include_path(get_include_path() . $_SERVER["DOCUMENT_ROOT"] . "/view/frontend/");*/
+
 require_once('./view/frontend/frontend.php');
 require_once('./view/frontend/accueilView.php');
 require_once('./view/frontend/presentationView.php');
@@ -13,6 +13,7 @@ require_once('./view/frontend/newsView.php');
 require_once('./view/frontend/newsDetailsView.php');
 require_once('./view/frontend/statsView.php');
 
+
 require_once('./model/frontend/frontend.php');
 require_once('./model/frontend/accueilModel.php');
 require_once('./model/frontend/inscriptionModel.php');
@@ -25,6 +26,11 @@ require_once('./model/frontend/newsModel.php');
 require_once('./model/frontend/statsModel.php');
 
 class Front_controller{
+
+   public function afficher_page_start(){
+      $v = new start_view();
+      $v->affichStart();
+          }
 
 public function afficher_page_principal(){
 $v = new accueil_view();
@@ -149,6 +155,12 @@ public function  getAnnonce_Info() {
    $m= new clientProfile_model();
    $info= $m->getAnnonceInfo() ;
    return $info;
+}
+
+public function  updateUser_Info($fname, $lname,$username, $email, $password, $phone, $adress, $isTransporter) {
+   $m= new clientProfile_model();
+   $msg= $m->updateUser($fname, $lname,$username, $email, $password, $phone, $adress, $isTransporter) ;
+   return $msg;
 }
 
  public function afficher_clientProfile($content) {

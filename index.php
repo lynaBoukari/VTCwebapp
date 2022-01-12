@@ -52,7 +52,9 @@ case 'Presentation' :
     case 'DetailsNews' :
         $c->afficher_detailsNews();
         break ;
-
+    case 'Dashboard' :
+          header('Location: dashboard.php');
+          break ;
 }
 }else {
     
