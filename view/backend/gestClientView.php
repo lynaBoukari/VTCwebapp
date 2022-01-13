@@ -49,7 +49,7 @@ public function gestClient() {
     <div class="row">
         <div class="col col-md-12">
             <center>
-                <table class="table tableUsers">
+                <table class="table table-striped tableUsers">
                     <thead class="thead-dark">
                         <tr>
                             <th>ID Client</th>
@@ -59,6 +59,7 @@ public function gestClient() {
                             <th>Email</th>
                             <th>Telephone</th>
                             <th>Addresse</th>
+                            <th>Bannis</th>
                             <th>Profile</th>
                         </tr>
                     </thead>
@@ -78,7 +79,8 @@ public function gestClient() {
                             <td>'.$row['email'].'</td>
                             <td>'.$row['phone'].'</td>
                             <td>'.$row['adress'].'</td>
-                            <td><a href="./dashboard.php?title=profileClient&id='.$row['idUser'].'"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a></td>
+                            <td>'.$row['ban'].'</td>
+                            <td><a href="./dashboard.php?title=profileClient&id='.$row['idUser'].'&trans=0"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a></td>
                            
                         </tr>
                         ';

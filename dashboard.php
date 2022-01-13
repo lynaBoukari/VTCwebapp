@@ -18,10 +18,15 @@ if(isset($_GET["title"]))
         case 'gestionClients':
             $c-> afficher_page_gestClient();
             break;
-        default:
-        $c->afficher_page_dashboard();
-        break;
 
+        case 'gestionTransporteurs' :
+            $c-> afficher_page_gestTrans();
+            break;
+
+            case 'gestionAnnonces' :
+                $c-> afficher_page_gestAnnonce();
+                break;
+        
         case 'profileClient' :
             $c->afficher_clientProfile("",$_GET['id']);
             break;
@@ -31,6 +36,14 @@ if(isset($_GET["title"]))
         case 'Profile/Annonces' :
             $c->afficher_clientProfile($c->afficher_AnnonProfile($_GET['id']),$_GET['id']);
                 break ;
+        case 'Profile/Gerer' :
+            $c->afficher_clientProfile($c-> afficher_GererProfile($_GET['id']),$_GET['id']);
+            $c->gererUser($_GET['id']);
+            break;
+
+            default:
+        $c->afficher_page_dashboard();
+        break;
     }
 
 }else{

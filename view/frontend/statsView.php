@@ -77,6 +77,7 @@ class stats_view {
                 $i=0;
                 $j=1;
             foreach ($topAnnon as $rowfa) {
+                if($rowfa['valide']=='1' && $rowfa['archive']!='1') {
                 $description= substr($rowfa['description'],0,20);
                 $titre= substr($rowfa['titre'],0,30);
                 echo '<div class="col-md-3">
@@ -106,7 +107,7 @@ class stats_view {
               }
                 $i=$i+1; 
              
-            }
+            } }
             echo '</div>';
             
             }

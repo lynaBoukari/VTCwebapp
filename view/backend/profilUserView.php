@@ -13,17 +13,19 @@ class profilUser_view {
             <div class="row menu-profile">
                 <h2>Profile </h2>
                 <hr class="dark">
-                <a class="btn btn-profile" href="./dashboard.php?title=Profile/Informations&id=<?php echo$_GET["id"]; ?>"> <i class="fa fa-user"
+                <a class="btn btn-profile" href="./dashboard.php?title=Profile/Informations&id=<?php echo$_GET["id"]; ?>&trans=<?php echo $_GET["trans"]; ?>"> <i class="fa fa-user"
                         aria-hidden="true"></i> Les informations</a>
-                <a class="btn btn-profile" href="./dashboard.php?title=Profile/Annonces&id=<?php echo $_GET["id"]; ?>"><i class="fa fa-bullhorn"
+                <a class="btn btn-profile" href="./dashboard.php?title=Profile/Annonces&id=<?php echo $_GET["id"]; ?>&trans=<?php echo $_GET["trans"]; ?>"><i class="fa fa-bullhorn"
                         aria-hidden="true"></i>Les annonces</a>
-                <a class="btn btn-profile" href="./dashboard.php?title=Profile/Transactions&id=<?php echo $_GET["id"]; ?>"><i
+                <a class="btn btn-profile" href="./dashboard.php?title=Profile/Transactions&id=<?php echo $_GET["id"]; ?>&trans=<?php echo $_GET["trans"]; ?>"><i
                         class="fa fa-address-card" aria-hidden="true"></i>Les
                     transactions</a>
-                <?php if($_SESSION['user_type']=='transporter')  {?>
-                <a class="btn btn-profile" href="./dashboard.php?title=Profile/Gains&id=<?php echo $_GET["id"]; ?>"><i class="fa fa-credit-card"
+                <?php if($_GET['trans']=='1')  {?>
+                <a class="btn btn-profile" href="./dashboard.php?title=Profile/Gains&id=<?php echo $_GET["id"]; ?>&trans=<?php echo $_GET["trans"]; ?>"><i class="fa fa-credit-card"
                         aria-hidden="true"></i>Les gains</a>
                 <?php }?>
+                <a class="btn btn-profile" href="./dashboard.php?title=Profile/Gerer&id=<?php echo$_GET["id"]; ?>&trans=<?php echo $_GET["trans"]; ?>"> <i class="fa fa-user"
+                        aria-hidden="true"></i> Gerer l'utilisateur</a>
             </div>
 
         </div>
@@ -209,6 +211,64 @@ class profilUser_view {
             return ob_get_clean();
         }
 
+
+        public function affichGererUser($idUser) {
+                ob_start();
+                $c=new front_controller();
+                $info=$c->clientProfile_info($idUser);
+                $infoT=$c->transProfile_info($idUser);
+                foreach ($info as $row) {
+                ?>
+                        <div class="row padding">
+                                <form method="post">
+                                <div class="form-row align-items-center">
+                                 <?php
+                                 if ($row['isTransporter']=='1'){
+                                     foreach ($infoT as $rowT){
+                                         ?>
+                                         <div class="col col-md-12">
+                                         <?php
+                                        if ($rowT['inscription']=='Non validee') {
+                                        ?>
+                                         <h4>L'inscription de <?= $row['username'] ?> est <?=  $rowT['inscription']?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+                                         <button type="submit" class="btn btn-success mb-2" name="validerTransporter">Valider inscription &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-check-circle" aria-hidden="true"></i></button>
+                                         <?php
+                                      }else{
+                                                        ?>
+                                            <h4>L'inscription de <?= $row['username'] ?> est <?=  $rowT['inscription']?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+                                            <button type="submit" class="btn btn-success mb-2" name="unvaliderTransporter">Unvalider inscription &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-check-circle" aria-hidden="true"></i></button>
+                                                        <?php
+                                        
+                                      }
+                                        ?> 
+                                        </div>
+                                         <?php
+                                     }
+                                 }
+                                 ?>
+                                    <div class="col col-md-12">
+                                        <?php
+                                        if ($row['ban']=='Non bannis') {
+                                        ?>
+                                   <h4>Bannir <?= $row['username'] ?> ? &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </h4>
+                                   <button type="submit" class="btn btn-danger mb-2" name="bannirUser">Bannir &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-ban" aria-hidden="true"></i></button>
+                                   <?php
+                                        } else{
+                                            ?>
+
+                                        <h4>Enlever le bann de  <?= $row['username'] ?> ? &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </h4>
+                                       <button type="submit" class="btn btn-danger mb-2" name="unbannirUser">Enlever bann &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-ban" aria-hidden="true"></i></button>
+                                         <?php
+                                        }
+                                        ?>
+                                    </div>
+                                    </div>
+                                </form>
+                        </div>
+                <?php
+                }
+                return ob_get_clean();
+        }
 
         public function affichClientProfile($content) {
             $vf=new front_view();
