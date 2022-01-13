@@ -37,13 +37,13 @@ case 'Presentation' :
         $c->afficher_ajouterAnnonce();
         break ;
     case 'Profile' :
-            $c->afficher_clientProfile("");
+            $c->afficher_clientProfile("",$_SESSION['id']);
             break ;
     case 'Profile/MesInformations' :
-            $c->afficher_clientProfile($c->afficher_InfoProfile());
+            $c->afficher_clientProfile($c->afficher_InfoProfile($_SESSION['id']),$_SESSION['id']);
             break ;
     case 'Profile/MesAnnonces' :
-        $c->afficher_clientProfile($c->afficher_AnnonProfile());
+        $c->afficher_clientProfile($c->afficher_AnnonProfile($_SESSION['id']),$_SESSION['id']);
             break ;
         
     case 'News' :
@@ -54,6 +54,9 @@ case 'Presentation' :
         break ;
     case 'Dashboard' :
           header('Location: dashboard.php');
+          break ;
+          default :
+          $c->afficher_page_principal() ;
           break ;
 }
 }else {

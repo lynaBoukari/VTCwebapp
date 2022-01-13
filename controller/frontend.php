@@ -128,15 +128,15 @@ public function afficher_login(){
  }
 
 
- public function clientProfile_info() {
+ public function clientProfile_info($idUser) {
     $m= new clientProfile_model();
-   $info= $m->getClientInfo();
+   $info= $m->getClientInfo($idUser);
    return $info;
 }
 
-public function transProfile_info() {
+public function transProfile_info($idUser) {
     $m= new clientProfile_model();
-   $info= $m->getTransInfo();
+   $info= $m->getTransInfo($idUser);
    return $info;
 }
 
@@ -151,9 +151,9 @@ public function  getTrajet_Info($idTrajet) {
     $info= $m->getTrajetInfo($idTrajet) ;
     return $info;
 }
-public function  getAnnonce_Info() {
+public function  getAnnonce_Info($idUser) {
    $m= new clientProfile_model();
-   $info= $m->getAnnonceInfo() ;
+   $info= $m->getAnnonceInfo($idUser) ;
    return $info;
 }
 
@@ -167,14 +167,14 @@ public function  updateUser_Info($fname, $lname,$username, $email, $password, $p
         $v= new clientProfile_view();
         $v->affichClientProfile($content);
  }
- public function afficher_InfoProfile() {
+ public function afficher_InfoProfile($idUser) {
    $v= new clientProfile_view();
-   $content= $v->affichInformation();
+   $content= $v->affichInformation($idUser);
    return $content;
 }
-public function afficher_AnnonProfile() {
+public function afficher_AnnonProfile($idUser) {
    $v= new clientProfile_view();
-   $content= $v->affichAnnonce();
+   $content= $v->affichAnnonce($idUser);
    return $content;
 }
 

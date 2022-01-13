@@ -422,3 +422,39 @@ input[type=password]:focus {
 #addTrajet {
     display: none;
 }
+
+.dashRow {
+    background-color: #f2f2f2;
+}
+
+.dashRow div.col figure {
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 3rem;
+    box-shadow: 0 0 0 0.1rem #c1c1c1;
+    outline: none;
+    background-color: #ccc;
+}
+
+.dashRow div.col figure:hover {
+    background-color: #c1c1c1;
+}
+
+.dashRow div.col a i:hover {
+    color: #1d2125;
+}
+
+.dashboard {
+    background-color: #f2f2f2;
+    margin: 2rem 0 2rem 0;
+    padding: 7rem 5rem 7rem 5rem;
+}
+
+.tableUsers {
+    width: 100%;
+}
+
+.tableUsers a {
+    color: #343a40;
+}

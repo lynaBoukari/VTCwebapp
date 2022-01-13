@@ -41,11 +41,11 @@ class clientProfile_view {
     }
 
 
-    public function affichInformation(){
+    public function affichInformation($idUser){
         ob_start();
         $c=new front_controller();
-        $info=$c->clientProfile_info();
-        $infoT=$c->transProfile_info();
+        $info=$c->clientProfile_info($idUser);
+        $infoT=$c->transProfile_info($idUser);
         
       
         foreach($info as $row){
@@ -166,10 +166,10 @@ class clientProfile_view {
     }
 
 
-    public function affichAnnonce() {
+    public function affichAnnonce($idUser) {
         ob_start();
         $c=new front_controller();
-        $rfa=$c->getAnnonce_Info();
+        $rfa=$c->getAnnonce_Info($idUser);
         if($rfa->num_rows ==0){
             echo '<div class="alert alert-secondary" role="alert">
            Vous n\'avez pas encore publier d\'annonces.

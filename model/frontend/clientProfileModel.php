@@ -4,20 +4,20 @@ require_once('./model/frontend/frontend.php');
 require_once('./model/frontend/inscriptionModel.php');
 class clientProfile_model {
 
-    public function getClientInfo() {
+    public function getClientInfo($idUser) {
         $fm=new front_model();
         $c=$fm->connect($fm->dbname, $fm->host, $fm->user, $fm->password) ;
-                $idUser=$_SESSION['id'];
+             //   $idUser=$_SESSION['id'];
                     $qi=" select * from user where idUser = '".$idUser."'";
                     $ri= $fm->requete($c,$qi);
                     $fm-> deconnect($c);
         return $ri;
     }
 
-    public function getTransInfo() {
+    public function getTransInfo($idUser) {
         $fm=new front_model();
         $c=$fm->connect($fm->dbname, $fm->host, $fm->user, $fm->password) ;
-                $idUser=$_SESSION['id'];
+          //      $idUser=$_SESSION['id'];
                     $qi=" select * from transporter where transporter.idUser = '".$idUser."'";
                     $ri= $fm->requete($c,$qi);
                     $fm-> deconnect($c);
@@ -42,10 +42,10 @@ public function getTrajetInfo($idTrajet) {
                 $fm-> deconnect($c);
     return $ri;
 }
-public function getAnnonceInfo() {
+public function getAnnonceInfo($idUser) {
     $fm=new front_model();
     $c=$fm->connect($fm->dbname, $fm->host, $fm->user, $fm->password) ;
-               $idUser=$_SESSION['id'];
+               //$idUser=$_SESSION['id'];
                 $qi=" select * from annonce where annonce.idUser = '".$idUser."'";
                 $ri= $fm->requete($c,$qi);
                 $fm-> deconnect($c);
