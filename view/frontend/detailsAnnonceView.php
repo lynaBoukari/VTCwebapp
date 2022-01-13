@@ -67,6 +67,40 @@ class detailsAnnonce_view {
                                                                                 
                                                 </label>
                                         </div>';
+                                        if($_SESSION['user_type']=='admin'){
+                                            $valide=" pas valide";
+                                            if($row['valide']=='1'){
+                                                $valide=" valide";
+                                            }
+                                            $archive=" pas archivée";
+                                            if($row['archive']=='1'){
+                                                $archive=" archivée";
+                                            }
+                                            echo ' 
+                                            <hr>
+                                            
+                                            <div class="container-fluid padding gestAnnon">
+                                            <center>
+                                            <h4>Gerer l\'annonce :</h4>
+                                            </center>
+                                            <div class=" row padding">
+                                            <ul> 
+                                            <li><h6>Cette annonce est <b>'.$valide.'</b>.</h6></li>
+                                           <li><h6>Cette annonce est <b>'.$archive.'</b>.</h6></li>
+                                           </ul>
+                                           <center>
+                                            <div class="col col-md-12">
+                                                <form method="post">
+                                                    <button type="submit" name="validerAnnonce" class="btn btn-primary">Valider l\'annonce  &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-check-circle" aria-hidden="true"></i></button>
+                                                    <button type="submit" name="archiverAnnonce" class="btn btn-danger">Archiver l\'annonce  &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-archive" aria-hidden="true"></i></button>
+                                                </form>
+                                                </div>
+                                                </center>
+                                                </div>
+                                                
+                                                
+                                            ' ;
+                                        }
                                             } 
                                             echo'
                                 </div>

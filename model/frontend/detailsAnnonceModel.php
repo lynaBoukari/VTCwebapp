@@ -14,7 +14,16 @@ class detailsAnnonce_model {
         $qa="update annonce SET nbrVus = nbrVus+ 1 where idAnnonce = '".$idAnnonce."'";
         $r= $fm->requete($c,$qa);
 
+            /**** Gerer l'archivage ou validation d'une annonce  ** */
+            if(isset($_POST['validerAnnonce'])){
+                $qa="update annonce SET valide = '1' where idAnnonce = '".$idAnnonce."'";
+                $r= $fm->requete($c,$qa);
 
+            }
+            if(isset($_POST['archiverAnnonce'])){
+                $qa="update annonce SET archive = '1' where idAnnonce = '".$idAnnonce."'";
+                $r= $fm->requete($c,$qa);
+            }
         $fm-> deconnect($c);
         return $ra;
     }

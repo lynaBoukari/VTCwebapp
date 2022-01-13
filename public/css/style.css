@@ -458,3 +458,8 @@ input[type=password]:focus {
 .tableUsers a {
     color: #343a40;
 }
+
+.gestAnnon {
+    width: 100%;
+    background-color: #f2f2f2;
+}
