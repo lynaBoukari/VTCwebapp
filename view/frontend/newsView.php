@@ -16,6 +16,9 @@ class news_view {
 
      $c=new front_controller();
      $rfa=null;
+
+     /**** recuperer les informations de news de la bdd */
+
     $rfa= $c->getNews();
     /* condition si le  news n'existe pas dans la BDD*/
     if ($rfa==null){
@@ -37,6 +40,8 @@ class news_view {
      foreach ($rfa as $rowfa ){
             $description= substr($rowfa['description'],0,20);
             $titre= substr($rowfa['titre'],0,10);
+
+            /**** afficher chaque nes sous forme de carte  */
             echo '<div class="col-md-3">
             <div class="card">
                     <img class="card-img-top" src="'.$rowfa['image'].'" alt="News image" style="width:100%; height:10rem"></img>

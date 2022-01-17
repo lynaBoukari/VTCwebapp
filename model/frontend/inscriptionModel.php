@@ -1,6 +1,11 @@
 <?php
 require_once('./controller/frontend.php');
 require_once('./model/frontend/frontend.php');
+
+/***
+ * 
+ *  cette classe gere le processus d'inscription et l'insertion d'un nouveau client ou transporter
+ */
 class inscription_model {
 
     public function insertTrajets($idTransporter,$departs,$arrivees) {

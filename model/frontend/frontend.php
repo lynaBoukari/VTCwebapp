@@ -1,5 +1,9 @@
 <?php
 require_once('./controller/frontend.php');
+/***
+ * 
+ * vcette classe contient les methodes communes aux autres models 
+ */
 class front_model {
     public $dbname ="vtc_tdw";
     public $host="localhost";

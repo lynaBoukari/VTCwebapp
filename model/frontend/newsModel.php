@@ -1,6 +1,10 @@
 <?php
 require_once('./controller/frontend.php');
 require_once('./model/frontend/frontend.php');
+/***
+ * 
+ * cette classe  permet de recuperer les donnes des news de la bdd
+ */
 class news_model {
 
 

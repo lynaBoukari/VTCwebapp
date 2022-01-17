@@ -3,6 +3,8 @@ require_once('./controller/frontend.php');
 require_once('./model/frontend/frontend.php');
 class accueil_model {
 
+
+  /***** cette fonction permet de filter selon les wilaya entréé dans le formulaire de recherche */
 public function filtrerAnnonce ($depart, $arrivee ) {
     $fm=new front_model();
     $c=$fm->connect($fm->dbname, $fm->host, $fm->user, $fm->password) ;
@@ -25,6 +27,8 @@ public function filtrerAnnonce ($depart, $arrivee ) {
  }
 }
 
+
+/**** cette fonction permet de choisir 8 annonce randomly pour les afficher à l'acceuil */
 public function randomAnnonce(){
   $fm=new front_model();
   $c=$fm->connect($fm->dbname, $fm->host, $fm->user, $fm->password) ;

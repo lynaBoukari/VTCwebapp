@@ -1,11 +1,16 @@
 <?php
 require_once('./controller/frontend.php');
 require_once('./view/frontend/frontend.php');
-
+/**
+ * cette classe a pour but d'afficher les details d'une annonce selectionnée
+ * 
+ * **/
 class detailsAnnonce_view {
 
         public function affichDetails(){
             $c=new front_controller();
+
+            /**** recuperer l'id de lannonce a travers la variable globale GET */
             if(isset($_GET['id'])){
               
                 $idAnnonce=$_GET['id'];
@@ -31,6 +36,8 @@ class detailsAnnonce_view {
                                     
                                     <img src="'.$row['image'].'" width="100%" alt="Product Image"></img>
                                     ';
+
+                                    /***** dans le cas où l'utilisateur est connecté il peut voir ces details */
                                     if( isset($_SESSION['valide']) && $_SESSION['valide']=='oui')
                                     { echo '
                                     <label>
@@ -47,26 +54,31 @@ class detailsAnnonce_view {
                                         <div class="row nconnectedDetails" >
                                             <label>
                                                 <h1> '.$row['titre'] .'<br/> </h1>
-                                                <h6><br/> <i class="fa fa-eye" aria-hidden="true"></i> &nbsp;&nbsp;  '. $row['nbrVus'] .'</h6>
-                                                <h6><br/><b>ID de l\'annonce :</b> '. $row['idAnnonce'] .'</h6>
+                                                <h6><br/> <i class="fa fa-eye" aria-hidden="true"></i> &nbsp;&nbsp;  '. $row['nbrVus'] .'.</h6>
+                                                <h6><br/><b>ID de l\'annonce :</b> '. $row['idAnnonce'] .'.</h6>
                                                 <p><br/><b>Description de l\'annonce : </b> <br/>'. $row['description'].' </p>
-                                                <p><br/><b>Départ : </b> Wilaya N°'. $rowT['depart'] .'&nbsp;&nbsp;&nbsp;&nbsp;<b>Arrivée : </b>Wilaya N°'. $rowT['arrivee'] .'</p>
-                                                <p><br/><b>Type de transport :</b>&nbsp;&nbsp;'. $row['typeTransport'] .'</p>
-                                                <p><br/><b>Poids colis :</b>&nbsp;&nbsp;['. $row['poidInit'] .' -'.  $row['poidFinal'] .'] </p>
-                                                <p><br/><b>Volume colis :</b> &nbsp;&nbsp;['. $row['volumeInit'] .' - '. $row['volumeFinal'].'] </p>
+                                                <p><br/><b>Départ : </b> Wilaya '. $c->getWilaya($rowT['depart']).'&nbsp;&nbsp;&nbsp;&nbsp;<b>Arrivée : </b>Wilaya '. $c->getWilaya($rowT['arrivee']) .'.</p>
+                                                <p><br/><b>Tarif du transport :</b>&nbsp;&nbsp;'. $rowT['tarif'] .' Da.</p>
+                                                <p><br/><b>Type de transport :</b>&nbsp;&nbsp;'. $row['typeTransport'] .'.</p>
+                                                <p><br/><b>Poids colis :</b>&nbsp;&nbsp;['. $row['poidInit'] .' -'.  $row['poidFinal'] .'] KG.</p>
+                                                <p><br/><b>Volume colis :</b> &nbsp;&nbsp;['. $row['volumeInit'] .' - '. $row['volumeFinal'].'] m3. </p>
                                             </label>
                                             </div>
                                             ';
+
+                                            /***** dans le cas où l'utilisateur est connecté il peut voir ces details */
                                             if( isset($_SESSION['valide']) && $_SESSION['valide']=='oui')
                                             {
                                                 echo '
                                         <div class="row connectedDetails">
                                             <label>
-                                                <p><br/><b>Moyen de transport :</b>&nbsp;&nbsp;'. $row['moyenTransport'] .'</p>
-                                                <p><br/><b>Date de l\'annonce :</b>&nbsp;&nbsp;'. $row['date'] .'</p>
+                                                <p><br/><b>Moyen de transport :</b>&nbsp;&nbsp;'. $row['moyenTransport'] .'.</p>
+                                                <p><br/><b>Date de l\'annonce :</b>&nbsp;&nbsp;'. $row['date'] .'.</p>
                                                                                 
                                                 </label>
                                         </div>';
+
+                                        /***** dans le cas où l'utilisateur est connecté et il est admin  il peut voir ces details de gestion */
                                         if($_SESSION['user_type']=='admin'){
                                             $valide=" pas valide";
                                             if($row['valide']=='1'){
@@ -117,6 +129,7 @@ class detailsAnnonce_view {
         }
 
     
+        /***** la main funtion qui affiche la page details d'une annonce  */
     public function affichPageDetails() {
     $vf=new front_view();
     $vf->entetePage("Détails de l'annonce");

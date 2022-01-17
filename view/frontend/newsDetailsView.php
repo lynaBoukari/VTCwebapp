@@ -6,6 +6,9 @@ class detailsNews_view {
 
 public function affichDetails(){
     $c=new front_controller();
+
+    /*** recuperer l'id du news à partir de l'url de la varible GET */
+
     if(isset($_GET['id'])){
                 $idNews=$_GET['id'];
                 $details=  $c->getNews_details($idNews);
@@ -56,7 +59,7 @@ public function affichDetails(){
 }
 }
 
-
+/*** la main fonction qui affiche la page des news  */
 public function affichNewsDetails(){
     $vf=new front_view();
     $vf->entetePage("Détails du news");

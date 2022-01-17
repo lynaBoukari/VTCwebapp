@@ -1,7 +1,10 @@
 <?php
 require_once('./controller/frontend.php');
 require_once('./model/frontend/frontend.php');
-
+/**
+ * 
+ * cette classe a pour but de recuperer les donnes de contacts de la bdd
+ */
 class contact_model {
 
     public function contact(){

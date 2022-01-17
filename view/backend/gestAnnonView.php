@@ -3,6 +3,12 @@ require_once('./controller/backend.php');
 require_once('./controller/frontend.php');
 require_once('./view/frontend/frontend.php');
 
+/***
+ * 
+ * 
+ * cette classe a pour but d'afficher la liste des annonces et les trier a partir du dashboard 
+ */
+
 class gestAnnon_view {
 
 public function gestAnnonce() {
@@ -12,7 +18,7 @@ public function gestAnnonce() {
  
     ?>
 <div class="container-fluid padding">
-    <div class="row padding">
+   <!-- <div class="row padding">
         <form method="post">
             <div class="form-row align-items-center">
                 <h6>Filter les client par :</h6>
@@ -59,10 +65,11 @@ public function gestAnnonce() {
             </div>
         </form>
     </div>
+-->
     <div class="row">
         <div class="col col-md-12">
             <center>
-                <table class="table table-striped tableUsers">
+                <table class="table table-striped tableUsers table-bordered table-sm" id="dtBasicExample">
                     <thead class="thead-dark">
                         <tr>
                             <th>ID Client</th>
@@ -75,6 +82,10 @@ public function gestAnnonce() {
                             <th>Titre annonce</th>
                             <th>Description annonce</th>
                             <th>Date d'annonce</th>
+                            <th>Validation</th>
+                            <th>Archivage</th>
+                            <th>Statut</th>
+                            <th>Nbr Vues</th>
                             <th>Détails annonce</th>
                         </tr>
                     </thead>
@@ -84,9 +95,21 @@ public function gestAnnonce() {
               if($annonce!=null) {
             foreach ($annonce as $row) {
                 $user="Client" ;
+                $valide="valide";
+                $archive="archivée";
+                $status="En_cours";
              if($row['isTransporter']=='1'){
                  $user="Transporteur" ;
              }
+             if($row['valide']=='0'){
+                $valide="Non_valide" ;
+            }
+            if($row['archive']=='0'){
+                $archive="Non_archivée" ;
+            }
+            if($row['status']=='0'){
+                $status="Terminée" ;
+            }
           echo '
                          
                                 <tr>
@@ -100,6 +123,10 @@ public function gestAnnonce() {
                                 <td>'.$row['titre'].'</td>
                                 <td>'.$row['description'].'</td>
                                 <td>'.$row['date'].'</td>
+                                <td>'.$valide.'</td>
+                                <td>'.$archive.'</td>
+                                <td>'.$status.'</td>
+                                <td>'.$row['nbrVus'].'</td>
                                 <td><a href="./index.php?titre=DetailsAnnonce&id='.$row['idAnnonce'].'"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a></td>
                                
                             </tr>

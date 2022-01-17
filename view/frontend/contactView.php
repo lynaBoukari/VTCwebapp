@@ -1,9 +1,14 @@
 <?php
 require_once('./controller/frontend.php');
 require_once('./view/frontend/frontend.php');
-
+/************************************************************************************************
+ * 
+ * le but de cette classe est d'afficher les donnees de contacts qui sont dans la bdd
+ */
 class contact_view {
 
+
+    /**** la main fonction responsable de l'affichage de la page contacts */
 public function affichContact(){
     
     $vf = new front_view();

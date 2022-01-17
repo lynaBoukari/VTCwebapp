@@ -1,8 +1,16 @@
 <?php
 require_once('./controller/frontend.php');
 require_once('./view/frontend/frontend.php');
+/**********************************************
+ * cette classe contient les fonction d'affichage du formulaire d'ajout d'une annonce 
+ * 
+ * 
+ * ************************************************ */
+
 
 class ajouterAnnonce_view {
+
+    /*** fonction responsable sur l'affichage du formulaire d'ajout */
     public function affichFormAnnonce() {
     ?>
 <form action="" method="post" enctype="multipart/form-data">
@@ -140,7 +148,7 @@ class ajouterAnnonce_view {
         <input type="text" placeholder="Ex : Camion..." name="moyenTransport" required>
 
         <label for="poidInit"><b>Fourchette de poid (en Kg) &nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-        <input type="number" placeholder="0.5 " name="poidInit" required max="100" min="1">
+        <input type="number" placeholder="0.5" name="poidInit" required max="100" min="1">
         <label for="poidFinal"><b> - </b></label>
         <input type="number" placeholder="2" name="poidFinal" required max="100" min="1">
         <p>
@@ -151,7 +159,7 @@ class ajouterAnnonce_view {
         <label for="volumeFinal"><b> - </b></label>
         <input type="number" placeholder="2" name="volumeFinal" required max="100" min="1">
         <hr>
-        <button type="submit" class="registerbtn" name="submitAnnonce">Ajouter</button>
+        <button type="submit" class=" registerbtn" name="submitAnnonce" >Ajouter</button>
     </div>
 
     </div>
@@ -164,6 +172,10 @@ class ajouterAnnonce_view {
 <?php
     }
 
+
+
+    // la main fonction qui affiche toute la page d'ajout d'une annonce 
+
     public function affichAjouterAnnonce(){
      $vf=new front_view();
     $vf->entetePage("Ajouter une annonce");
@@ -173,8 +185,10 @@ class ajouterAnnonce_view {
 
     if(isset($_POST['submitAnnonce'])){
         $c=new front_controller();
-       $msg= $c->ajouterAnnonce($_POST['ajouterWilaya1'],$_POST['ajouterWilaya2'],$_POST['typeTransport'],$_POST['poidInit'],$_POST['poidFinal'],$_POST['volumeInit'],$_POST['volumeFinal'],$_POST['moyenTransport'],$_SESSION['id'],$_POST['titre'],$_POST['description']);
-       echo $msg;
+       $idTrajet= $c->ajouterAnnonce($_POST['ajouterWilaya1'],$_POST['ajouterWilaya2'],$_POST['typeTransport'],$_POST['poidInit'],$_POST['poidFinal'],$_POST['volumeInit'],$_POST['volumeFinal'],$_POST['moyenTransport'],$_SESSION['id'],$_POST['titre'],$_POST['description']);
+       ?>
+            <a type="button" href="./index.php?titre=Suggestions&idTrajet=<?= $idTrajet ?>">Voir les suggestions de transporteurs > </a>
+       <?php
     }
     $vf-> affichFooter();
     }

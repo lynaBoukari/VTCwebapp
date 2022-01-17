@@ -1,8 +1,16 @@
 <?php
 require_once('./controller/frontend.php');
 require_once('./view/frontend/frontend.php');
-
+/****
+ * 
+ * 
+ * 
+ *  le but de cette class est d'afficher le profile d'un client avec les donnes de la bdd
+ */
 class clientProfile_view {
+
+
+    /***** cette fonction represente la structure generale de la page , elle recoit en entree le contenu selon la fonctionnalité desiréé */
    public function affichProfile($content){
 
 ?>
@@ -40,7 +48,7 @@ class clientProfile_view {
 
     }
 
-
+/**** cette fonction affiche les donnes d'un client precis sur son profil */
     public function affichInformation($idUser){
         ob_start();
         $c=new front_controller();
@@ -165,7 +173,7 @@ class clientProfile_view {
         return ob_get_clean();
     }
 
-
+/***** cette function affiche les annonce d'un client precis sur son profil  */
     public function affichAnnonce($idUser) {
         ob_start();
         $c=new front_controller();
@@ -237,6 +245,9 @@ class clientProfile_view {
         <?php
         return ob_get_clean();
     }
+
+
+    /******la fonction main qui affiche toutes la page profil  */
     public function affichClientProfile($content) {
         $vf=new front_view();
         $vf->entetePage("Mon Profile");

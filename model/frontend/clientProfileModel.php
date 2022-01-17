@@ -2,6 +2,12 @@
 require_once('./controller/frontend.php');
 require_once('./model/frontend/frontend.php');
 require_once('./model/frontend/inscriptionModel.php');
+
+/***
+ * 
+ * 
+ * cette c a pour but de recuperer les donnees necessaires à l'affichage des informations du profile utilisateurs
+ */
 class clientProfile_model {
 
     public function getClientInfo($idUser) {

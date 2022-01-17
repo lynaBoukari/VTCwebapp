@@ -32,9 +32,12 @@ case 'Presentation' :
         break ;
     case 'DetailsAnnonce' :
         $c->afficher_detailsAnnonce() ;
-        break ;
+        break ; 
     case 'ajouterAnnonce' :
         $c->afficher_ajouterAnnonce();
+        break ;
+    case 'Suggestions' :
+        $c->afficher_suggestionAnnonce($_GET['idTrajet']);
         break ;
     case 'Profile' :
             $c->afficher_clientProfile("",$_SESSION['id']);

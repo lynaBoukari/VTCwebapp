@@ -2,7 +2,11 @@
 require_once('./controller/backend.php');
 require_once('./controller/frontend.php');
 require_once('./view/frontend/frontend.php');
-
+/***
+ * 
+ * 
+ * cette classe a pour but d'afficher la liste des client et les trier a partir du dashboard 
+ */
 class gestClient_view {
 
 public function gestClient() {
@@ -12,7 +16,7 @@ public function gestClient() {
    
     ?>
 <div class="container-fluid padding">
-<div class="row">
+ <!--<div class="row">
     <form method="post">
         <div class="form-row align-items-center">
             <h6>Filter les client par :</h6>
@@ -45,11 +49,11 @@ public function gestClient() {
     </div>
     </div>
 </form>
-</div>
+</div> -->
     <div class="row">
         <div class="col col-md-12">
             <center>
-                <table class="table table-striped tableUsers">
+                <table class="table table-striped tableUsers" id="dtBasicExample">
                     <thead class="thead-dark">
                         <tr>
                             <th>ID Client</th>

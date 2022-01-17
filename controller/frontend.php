@@ -8,6 +8,7 @@ require_once('./view/frontend/inscriptionView.php');
 require_once('./view/frontend/contactView.php');
 require_once('./view/frontend/detailsAnnonceView.php');
 require_once('./view/frontend/ajouterAnnonceView.php');
+require_once('./view/frontend/suggestionAnnonce.php');
 require_once('./view/frontend/clientProfileView.php');
 require_once('./view/frontend/newsView.php');
 require_once('./view/frontend/newsDetailsView.php');
@@ -21,6 +22,7 @@ require_once('./model/frontend/loginModel.php');
 require_once('./model/frontend/contactModel.php');
 require_once('./model/frontend/detailsAnnonceModel.php');
 require_once('./model/frontend/ajouterAnnonceModel.php');
+require_once('./model/frontend/suggestionAnnonceModel.php');
 require_once('./model/frontend/clientProfileModel.php');
 require_once('./model/frontend/newsModel.php');
 require_once('./model/frontend/presentationModel.php');
@@ -102,6 +104,11 @@ public function afficher_login(){
     $details= $m->details($idAnnonce);
     return $details;
  }
+ public function getWilaya($idWilaya){
+   $m = new detailsAnnonce_model();
+   $nom= $m->getWilaya($idWilaya);
+   return $nom;
+ }
  public function detailsUserAnnonce($idAnnonce) {
     $m = new detailsAnnonce_model();
     $details= $m->getUserAnnonce($idAnnonce);
@@ -113,15 +120,37 @@ public function afficher_login(){
     return $details;
  }
 
+ public function suggestionAnnonce($idTrajet) {
+   $m = new suggestionAnnonce_model();
+   $sugg= $m->suggestion($idTrajet);
+   return $sugg;
+}
+public function getTarif($idTrajet) {
+   $m = new suggestionAnnonce_model();
+   $sugg= $m->getTarif($idTrajet);
+   return $sugg;
+}
+public function getTransSugg($idTransporter) {
+   $m = new suggestionAnnonce_model();
+   $sugg= $m->getTransSugg($idTransporter);
+   return $sugg;
+}
+
+
  public function afficher_detailsAnnonce() {
     $v = new detailsAnnonce_view();
     $v->affichPageDetails();
  }
+ public function afficher_suggestionAnnonce($idTrajet) {
+   $v = new suggestionAnnonce_view();
+   $v->affichSuggestion($idTrajet);
+}
 
  public function ajouterAnnonce($depart,$arrivee,$typeTransport,$poidInit,$poidFinal,$volumeInit,$volumeFinal,$moyenTransport,$idUser,$titre,$description) {
     $m = new ajouterAnnonce_model();
-    $msg= $m->ajouterAnnonce($depart,$arrivee,$typeTransport,$poidInit,$poidFinal,$volumeInit,$volumeFinal,$moyenTransport,$idUser,$titre,$description);
-    return $msg;
+    $idTrajet= $m->ajouterAnnonce($depart,$arrivee,$typeTransport,$poidInit,$poidFinal,$volumeInit,$volumeFinal,$moyenTransport,$idUser,$titre,$description);
+
+        return $idTrajet;
  }
  public function afficher_ajouterAnnonce() {
     $v = new ajouterAnnonce_view();

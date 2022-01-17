@@ -7,6 +7,8 @@ class login_view {
 
 
 public function affichLogin() {
+
+    // ue fonction qui affiche le type modal pour le login
     ?>
 <div id="Loginmodal" class="modal">
 
@@ -37,6 +39,7 @@ public function affichLogin() {
 </div>
 <?php
 $c=new front_controller();
+/*** verifier si le client a bien remplis les champs pour lancer la requete sql */
 if(isset($_POST['submitLogin'])){
         if(isset($_POST['usernameLogin'])){
             if(isset($_POST['passwordLogin'])){

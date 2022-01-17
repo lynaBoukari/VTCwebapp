@@ -9,6 +9,8 @@ class stats_view {
   // fonction qui affiche  les statistiques
   public function affichStats(){
     $c=new front_controller();
+
+    /***** recuperer toutes les informations necessaires de la bdd */
     $nbrVisit=$c->getVisitStats();
     $nbrUser=$c->getUserStats();
     $nbrTrans=$c->getTransStats();
@@ -118,6 +120,9 @@ class stats_view {
 </div>
 <?php
         }
+
+
+        /*** la main function qui affiche la page des statistiques */
 public function affichStatsPage(){
 
     $vf=new front_view();

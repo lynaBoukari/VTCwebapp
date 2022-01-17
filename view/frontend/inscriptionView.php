@@ -14,6 +14,8 @@ public function affichInscription() {
 <body>
     <?php
 $vf-> affichMenu();
+
+/****** afficher le formulaire d'inscription , les donnes sont envoyées avec la methode post */
     ?>
     <form action="" method="post">
         <div class="container inscription">
@@ -89,6 +91,7 @@ $vf-> affichMenu();
 
 <?php
   $c=new front_controller();
+  /**** verifier si toutes les donnees presentes et le client a bien submiter  */
    if(isset($_POST['submit'])){
        if(isset($_POST['depart'])){
          

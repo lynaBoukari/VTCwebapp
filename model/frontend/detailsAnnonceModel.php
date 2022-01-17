@@ -1,6 +1,11 @@
 <?php
 require_once('./controller/frontend.php');
 require_once('./model/frontend/frontend.php');
+
+
+/***
+ *  cette classe a pour but de recherche des donnes necessaires à l'affichage des details d'une annonce
+ */
 class detailsAnnonce_model {
 
     public function details($idAnnonce) {
@@ -52,5 +57,16 @@ class detailsAnnonce_model {
 
             $fm-> deconnect($c);
             return $rtrajet;
+    }
+    public function getWilaya($idWilaya){
+        $fm=new front_model();
+        $c=$fm->connect($fm->dbname, $fm->host, $fm->user, $fm->password) ;
+            $qtrajet="select nom from wilaya where id = '".$idWilaya."'";
+            $nom= $fm->requete($c,$qtrajet);
+         foreach ($nom as $row){
+             return $row['nom'];
+         }
+            $fm-> deconnect($c);
+           
     }
 }

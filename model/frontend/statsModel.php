@@ -1,6 +1,9 @@
 <?php
 require_once('./controller/frontend.php');
 require_once('./model/frontend/frontend.php');
+/***
+ * cette classe permet d'effecteur les fonctions necessaires pour generer les statistiques du site 
+ */
 class stats_model {
 
 public function updateStats() {

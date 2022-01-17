@@ -1,6 +1,10 @@
 <?php
 require_once('./controller/frontend.php');
 require_once('./model/frontend/frontend.php');
+
+/***
+ * cette classe permet de gerer le processus de login 
+ */
 class login_model {
    
     public function login($username,$password){

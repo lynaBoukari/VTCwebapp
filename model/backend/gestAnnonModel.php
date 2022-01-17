@@ -1,6 +1,10 @@
 <?php
 require_once('./controller/backend.php');
 require_once('./model/frontend/frontend.php');
+/****************************************************************
+ * 
+ * cette classe permet de recuperer et modifier les donnees des annonces qui seront affichés dans la partie dashboard
+ */
 class gestAnnonce_model {
 
 
