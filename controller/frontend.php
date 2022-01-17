@@ -23,6 +23,7 @@ require_once('./model/frontend/detailsAnnonceModel.php');
 require_once('./model/frontend/ajouterAnnonceModel.php');
 require_once('./model/frontend/clientProfileModel.php');
 require_once('./model/frontend/newsModel.php');
+require_once('./model/frontend/presentationModel.php');
 require_once('./model/frontend/statsModel.php');
 
 class Front_controller{
@@ -190,6 +191,12 @@ public function afficher_AnnonProfile($idUser) {
     $info= $m->getNewsInfo($idNews) ;
     return $info;
  }
+
+ public function getPresentation(){
+   $m= new presentation_model();
+   $info= $m-> getPresentation() ;
+   return $info;
+}
 
  public function afficher_news(){
     $v= new news_view();

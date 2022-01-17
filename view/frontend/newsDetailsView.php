@@ -40,7 +40,7 @@ public function affichDetails(){
         </div>
         <div class="row padding">
             <div class="col-md-4">
-                <h6> Pour plus de details, <a href="<?php $row['lien'] ?>"> suivez le lien suivant !</a> </h6>
+                <h6> Pour plus de details, <a href="<?= $row['lien'] ?>" _blank> suivez le lien suivant !</a> </h6>
             </div>
             <div class="col-md-8">
                 <img src=" <?= $row['image2'] ?>" alt="Image VTC News">

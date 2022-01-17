@@ -1,7 +1,7 @@
 <?php
 require_once('./controller/frontend.php');
 class front_model {
-    public $dbname ="tdw_vtc";
+    public $dbname ="vtc_tdw";
     public $host="localhost";
     public $user="root";
     public $password="";

@@ -114,6 +114,9 @@ public function  entetePage($titre) {
    
 
     public function affichFooter(){
+        $c=new front_controller();
+        $contacts = $c->contact();
+        foreach ($contacts as $contact){
         ?>
          <!--- The footer --->
   <footer>
@@ -122,10 +125,10 @@ public function  entetePage($titre) {
               <div class="col-md-4">
                   <img src="./public/images/vtcLogo.png" alt="Logo" style="width:30% ; " >
                   <hr class="light">
-                  <p>+213-666-666-666</p>
-                  <p>email@VTC.com</p>
-                  <p>Oued Smar , Alger</p>
-                  <p>Alger, Algerie.</p>
+                  <p><?= $contact['phone'] ?></p>
+                  <p><?= $contact['email'] ?></p>
+                  <p><?= $contact['adress'] ?></p>
+               
                   </div>
 
                   <div class="col-md-4">
@@ -157,7 +160,8 @@ public function  entetePage($titre) {
           </div>
           </div>
   </footer>
-
+    
   <?php
+      break;  }
     }
    }

@@ -116,6 +116,7 @@ $vf-> affichMenu();
             </ul>
         </div>
 ' ;
+break;
         
         }
         ?>
