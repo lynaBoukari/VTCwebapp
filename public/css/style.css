@@ -463,3 +463,12 @@ input[type=password]:focus {
     width: 100%;
     background-color: #f2f2f2;
 }
+
+#linkSuggestions {
+    font-size: 1.5rem;
+    transform: translate(20rem, -67rem);
+}
+
+#linkSuggestions button {
+    color: #343a40;
+}

@@ -187,7 +187,7 @@ class ajouterAnnonce_view {
         $c=new front_controller();
        $idTrajet= $c->ajouterAnnonce($_POST['ajouterWilaya1'],$_POST['ajouterWilaya2'],$_POST['typeTransport'],$_POST['poidInit'],$_POST['poidFinal'],$_POST['volumeInit'],$_POST['volumeFinal'],$_POST['moyenTransport'],$_SESSION['id'],$_POST['titre'],$_POST['description']);
        ?>
-            <a type="button" href="./index.php?titre=Suggestions&idTrajet=<?= $idTrajet ?>">Voir les suggestions de transporteurs > </a>
+            <a type="button" class="btn btn-primary" href="./index.php?titre=Suggestions&idTrajet=<?= $idTrajet ?>"id="linkSuggestions">Voir les suggestions de transporteurs > </a>
        <?php
     }
     $vf-> affichFooter();

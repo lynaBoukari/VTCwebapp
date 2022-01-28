@@ -34,6 +34,7 @@ public function suggestion($idTrajet){
                             <th>Email</th>
                             <th>Telephone</th>
                             <th>Certificat</th>
+                            <th>Contacter</th>
                             </tr>
                         </thead>
 
@@ -52,6 +53,8 @@ public function suggestion($idTrajet){
                             <td>'. $row['email'] .'</td>
                             <td>'. $row['phone'] .'</td>
                             <td>'. $row['statutCertif'] .'</td>
+                            <td> <center><a href="mailto:'.$row['email'].'"><i class="fa fa-envelope fa-2x" aria-hidden="true"></i></a> </center></td>
+
                         
                         </tr> 
                             ' ;
